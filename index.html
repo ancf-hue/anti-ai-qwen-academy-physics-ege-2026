@@ -1,0 +1,2578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Anti-AI Qwen Academy | Physics EGE-2026</title>
+  <meta
+    name="description"
+    content="Free offline trainer and checklist for EGE Physics 2026: exam structure, 20 Part 1 tasks, 6 Part 2 tasks, criteria, preparation plan."
+  />
+
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root {
+      --bg: #070b18;
+      --card: rgba(18, 26, 51, 0.72);
+      --card-soft: rgba(255, 255, 255, 0.05);
+      --border: rgba(255, 255, 255, 0.1);
+      --text: #e8ecff;
+      --muted: #9aa4c8;
+      --accent: #22d3ee;
+      --violet: #7c3aed;
+      --green: #22c55e;
+      --red: #ef4444;
+      --orange: #f59e0b;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.22), transparent 30%),
+        radial-gradient(circle at top right, rgba(34, 211, 238, 0.18), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+
+    .container { width: min(1120px, 92%); margin: 0 auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: rgba(7, 11, 24, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+      flex-wrap: wrap;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      border-radius: 15px;
+      object-fit: cover;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
+      flex: 0 0 auto;
+    }
+
+    .brand strong { display: block; font-size: 16px; line-height: 1.2; }
+    .brand small { color: var(--muted); font-size: 12px; }
+
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+
+    nav a {
+      color: #cfd6ff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    nav a:hover { color: white; }
+
+    /* New Controls Area */
+    .top-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-left: auto;
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .lang-btn:hover { background: rgba(255, 255, 255, 0.12); }
+
+    .lang-option { opacity: 0.65; }
+    .lang-option.active { opacity: 1; color: white; }
+    .lang-sep { opacity: 0.45; }
+
+    .timer-widget {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      padding: 6px 8px;
+    }
+
+    .timer-widget select {
+      background: rgba(7, 11, 24, 0.55);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 10px;
+      padding: 6px 8px;
+      font: inherit;
+      font-size: 12px;
+      max-width: 160px;
+    }
+
+    #timerDisplay {
+      font-variant-numeric: tabular-nums;
+      font-weight: 900;
+      min-width: 88px;
+      text-align: center;
+      color: white;
+    }
+
+    .timer-btn {
+      border: 0;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+      border-radius: 10px;
+      padding: 6px 9px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: 0.15s ease;
+    }
+
+    .timer-btn:hover { background: rgba(255, 255, 255, 0.14); }
+
+    .timer-widget.warning #timerDisplay { color: var(--orange); }
+    .timer-widget.danger #timerDisplay {
+      color: var(--red);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.55; }
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      padding: 48px 0 28px;
+      align-items: start;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.18);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      color: #d8ccff;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    h1 { font-size: clamp(34px, 5vw, 58px); line-height: 1.05; margin: 16px 0; }
+    h1 .accent { color: var(--accent); }
+
+    .lead { color: #b8c1e6; max-width: 72ch; font-size: 17px; }
+
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+
+    .btn {
+      border: 0;
+      border-radius: 14px;
+      padding: 14px 18px;
+      font-weight: 850;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      color: white;
+      box-shadow: 0 12px 30px rgba(34, 211, 238, 0.18);
+      font-size: 15px;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn.secondary {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      color: #eaf0ff;
+      box-shadow: none;
+    }
+
+    .btn.small { padding: 10px 14px; font-size: 14px; border-radius: 12px; }
+
+    .panel {
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.16), rgba(6, 182, 212, 0.10));
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 22px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .panel h3 { margin: 0 0 14px; font-size: 20px; }
+
+    .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 18px 0; }
+
+    .metric {
+      background: rgba(7, 11, 24, 0.35);
+      border-radius: 16px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      min-height: 82px;
+    }
+
+    .metric strong { display: block; font-size: 22px; color: white; margin-bottom: 4px; }
+    .metric span { color: var(--muted); font-size: 12px; }
+
+    progress {
+      width: 100%;
+      height: 10px;
+      border-radius: 999px;
+      overflow: hidden;
+      appearance: none;
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      margin-top: 10px;
+    }
+
+    progress::-webkit-progress-bar { background: rgba(255, 255, 255, 0.1); border-radius: 999px; }
+    progress::-webkit-progress-value { background: linear-gradient(90deg, var(--violet), var(--accent)); border-radius: 999px; }
+    progress::-moz-progress-bar { background: var(--accent); border-radius: 999px; }
+
+    .note { color: var(--muted); font-size: 13px; margin-top: 12px; }
+
+    section { padding: 28px 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+
+    h2 { font-size: clamp(26px, 3vw, 36px); margin: 0; line-height: 1.15; }
+    .sub { color: var(--muted); margin: 6px 0 0; }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 16px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 22px;
+      padding: 20px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .card h3 { margin: 0 0 10px; font-size: 20px; }
+    .card p { color: #b8c1e6; margin: 0 0 16px; }
+
+    .warn-card {
+      border-color: rgba(245, 158, 11, 0.35);
+      background: linear-gradient(180deg, rgba(245, 158, 11, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .danger-card {
+      border-color: rgba(239, 68, 68, 0.35);
+      background: linear-gradient(180deg, rgba(239, 68, 68, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .success-card {
+      border-color: rgba(34, 197, 94, 0.35);
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.10), rgba(18, 26, 51, 0.72));
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 850;
+      margin-bottom: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #dbe3ff;
+    }
+
+    .tag.red { background: rgba(239, 68, 68, 0.14); border-color: rgba(239, 68, 68, 0.35); color: #ffd7d7; }
+    .tag.green { background: rgba(34, 197, 94, 0.14); border-color: rgba(34, 197, 94, 0.35); color: #d7ffe6; }
+    .tag.orange { background: rgba(245, 158, 11, 0.14); border-color: rgba(245, 158, 11, 0.35); color: #fff0cc; }
+
+    .mini-list { margin: 0; padding-left: 18px; color: #c8d2f5; }
+    .mini-list li { margin: 7px 0; }
+
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      padding: 14px;
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      align-items: center;
+    }
+
+    .filter-bar span {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .filter-btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      transition: 0.15s ease;
+    }
+
+    .filter-btn:hover { background: rgba(255, 255, 255, 0.1); }
+    .filter-btn.active {
+      background: linear-gradient(135deg, var(--violet), var(--accent));
+      border-color: transparent;
+      color: white;
+    }
+
+    .question-block {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 24px;
+      padding: 24px;
+      margin-bottom: 26px;
+      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.22);
+    }
+
+    .q-number {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.22);
+      border: 1px solid rgba(124, 58, 237, 0.45);
+      color: #d8ccff;
+      font-size: 13px;
+      font-weight: 850;
+      margin-bottom: 14px;
+    }
+
+    .q-number.mech {
+      background: rgba(239, 68, 68, 0.18);
+      border-color: rgba(239, 68, 68, 0.45);
+      color: #ffd7d7;
+    }
+
+    .q-number.mol {
+      background: rgba(34, 197, 94, 0.18);
+      border-color: rgba(34, 197, 94, 0.45);
+      color: #d7ffe6;
+    }
+
+    .q-number.elec {
+      background: rgba(245, 158, 11, 0.18);
+      border-color: rgba(245, 158, 11, 0.45);
+      color: #fff0cc;
+    }
+
+    .q-part { margin-bottom: 18px; }
+
+    .q-part-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .q-text {
+      font-size: 17px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.5;
+      color: #eaf0ff;
+      white-space: pre-wrap;
+    }
+
+    .q-info {
+      background: rgba(124, 58, 237, 0.10);
+      border-left: 4px solid var(--violet);
+      border-radius: 0 14px 14px 0;
+      padding: 16px 18px;
+      margin: 18px 0;
+      color: #dbe3ff;
+      font-size: 15px;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+
+    .q-info strong { color: #ffffff; }
+
+    .q-trainer-label {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .options { display: grid; gap: 10px; }
+
+    .option {
+      text-align: left;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: var(--text);
+      border-radius: 14px;
+      padding: 14px 16px;
+      cursor: pointer;
+      font-size: 15px;
+      transition: 0.15s ease;
+      white-space: pre-wrap;
+    }
+
+    .option:hover:not(:disabled) { background: rgba(255, 255, 255, 0.1); }
+    .option.correct { background: rgba(34, 197, 94, 0.18); border-color: rgba(34, 197, 94, 0.55); }
+    .option.wrong { background: rgba(239, 68, 68, 0.18); border-color: rgba(239, 68, 68, 0.55); }
+    .option:disabled { cursor: default; }
+
+    .result-block {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 14px;
+    }
+
+    .result-block.correct {
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.35);
+    }
+
+    .result-block.wrong {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+    }
+
+    .verdict {
+      font-size: 17px;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .verdict.correct { color: #22c55e; }
+    .verdict.wrong { color: #ef4444; }
+
+    .result-row {
+      margin: 6px 0;
+      color: #d7e6ff;
+      font-size: 15px;
+    }
+
+    .result-row strong { color: #ffffff; }
+
+    .source-row {
+      margin-top: 10px;
+      padding-top: 10px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .source-row strong { color: #dbe3ff; }
+
+    .summary {
+      background: linear-gradient(180deg, rgba(34, 197, 94, 0.14), rgba(18, 26, 51, 0.72));
+      border: 1px solid rgba(34, 197, 94, 0.4);
+      border-radius: 24px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    .summary .score { font-size: 48px; font-weight: 950; color: #fff; }
+
+    .reset-bar {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      justify-content: flex-end;
+    }
+
+    .checklist { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+
+    .check-item {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 14px;
+      transition: 0.15s ease;
+    }
+
+    .check-item input {
+      width: 20px;
+      height: 20px;
+      margin-top: 3px;
+      accent-color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .check-item label { cursor: pointer; color: #dbe3ff; }
+
+    .check-item.done {
+      opacity: 0.72;
+      background: rgba(34, 211, 238, 0.08);
+      border-color: rgba(34, 211, 238, 0.25);
+    }
+
+    .check-item.done label { text-decoration: line-through; color: #aab5dc; }
+
+    .plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+
+    .day {
+      background: var(--card-soft);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      min-height: 112px;
+    }
+
+    .day b {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+
+    .day.critical {
+      border-color: rgba(239, 68, 68, 0.35);
+      background: rgba(239, 68, 68, 0.08);
+    }
+
+    .manual-card {
+      background: var(--card);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 22px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .manual-card h3 { margin: 0 0 10px; font-size: 20px; }
+    .manual-card p { color: #b8c1e6; margin: 8px 0; white-space: pre-wrap; }
+
+    .answer-hint {
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(34, 197, 94, 0.10);
+      border: 1px solid rgba(34, 197, 94, 0.28);
+      color: #d7ffe6;
+      font-size: 14px;
+      white-space: pre-wrap;
+    }
+
+    .check-input {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.18);
+    }
+
+    .check-input label {
+      display: block;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .check-input input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      font-size: 15px;
+      font-family: inherit;
+    }
+
+    .check-input input:focus {
+      outline: none;
+      border-color: var(--accent);
+      background: rgba(34, 211, 238, 0.06);
+    }
+
+    .support-card {
+      background: linear-gradient(180deg, rgba(124, 58, 237, 0.18), rgba(34, 211, 238, 0.10));
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+    }
+
+    .support-card h2 { margin-bottom: 10px; }
+    .support-card p { margin: 10px 0; color: #dbe3ff; }
+
+    .phone {
+      color: white;
+      font-weight: 900;
+      text-decoration: none;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.45);
+    }
+
+    .phone:hover { color: var(--accent); }
+
+    .copy-status { margin-left: 8px; color: var(--green); font-weight: 850; }
+
+    .support-card a { color: var(--accent); font-weight: 800; text-decoration: none; }
+    .support-card a:hover { text-decoration: underline; }
+
+    footer {
+      padding: 30px 0 50px;
+      color: var(--muted);
+      text-align: center;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      margin-top: 30px;
+    }
+
+    /* Style for SVG Figures */
+    .q-figure {
+      margin: 14px 0 18px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      border-radius: 16px;
+      text-align: center;
+      overflow-x: auto;
+    }
+
+    .q-figure svg {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+    }
+
+    .q-figure figcaption {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 8px;
+      font-weight: 700;
+    }
+
+    @media (max-width: 860px) {
+      .hero { grid-template-columns: 1fr; }
+      .metrics { grid-template-columns: 1fr; }
+      nav { gap: 12px; }
+      .top-controls { width: 100%; justify-content: space-between; }
+      .timer-widget select { max-width: 120px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container topbar">
+      <div class="brand">
+        <img
+          src="favicon.ico"
+          class="brand-logo"
+          alt="Anti-AI Qwen Academy Logo"
+          onerror="this.style.display='none'"
+        />
+        <div>
+          <strong data-i18n="brandTitle">Anti-AI Qwen Academy</strong>
+          <small data-i18n="brandSub">Free EGE-2026 Projects</small>
+        </div>
+      </div>
+
+      <nav>
+        <a href="#structure" data-i18n="navStructure">Structure</a>
+        <a href="#changes" data-i18n="navChanges">Important 2026</a>
+        <a href="#criteria" data-i18n="navCriteria">Criteria</a>
+        <a href="#trainer" data-i18n="navTrainer">Trainer</a>
+        <a href="#part2" data-i18n="navPart2">Part 2</a>
+        <a href="#checklist" data-i18n="navChecklist">Checklist</a>
+        <a href="#plan" data-i18n="navPlan">25 Days</a>
+        <a href="#support" data-i18n="navSupport">Support</a>
+      </nav>
+
+      <div class="top-controls">
+        <button id="langToggle" class="lang-btn" type="button" aria-label="Switch Language">
+          <span class="lang-option" data-lang="ru">RU</span>
+          <span class="lang-sep">/</span>
+          <span class="lang-option active" data-lang="en">EN</span>
+        </button>
+
+        <div class="timer-widget" id="timerWidget" role="group" aria-label="Exam Timer">
+          <select id="timerPreset" aria-label="Timer Preset"></select>
+          <span id="timerDisplay">03:30:00</span>
+          <button id="timerToggle" class="timer-btn" type="button">▶</button>
+          <button id="timerReset" class="timer-btn" type="button">↺</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <span class="badge" data-i18n="badge">Free • HTML • Physics EGE-2026 • 26 Tasks</span>
+
+        <h1 data-i18n="h1">Help you pass <span class="accent">Physics EGE</span> correctly</h1>
+
+        <p class="lead" data-i18n="lead">
+          For each task: first the question, then information about what the task checks, then the trainer.
+          Answer options are shuffled so you cannot guess “always the first one”. The correct answer appears
+          only after your answer. Graphs and diagrams are embedded directly on the page.
+        </p>
+
+        <div class="actions">
+          <button class="btn" onclick="scrollToId('trainer')" data-i18n="actionTrainer">Take the trainer</button>
+          <button class="btn secondary" onclick="scrollToId('part2')" data-i18n="actionPart2">Part 2</button>
+          <button class="btn secondary" onclick="scrollToId('structure')" data-i18n="actionStructure">Exam Structure</button>
+        </div>
+      </div>
+
+      <aside class="panel">
+        <h3 data-i18n="quickStats">Quick Stats</h3>
+
+        <div class="metrics">
+          <div class="metric">
+            <strong id="answeredCount">0/20</strong>
+            <span data-i18n="metricAnswered">auto-questions completed</span>
+          </div>
+          <div class="metric">
+            <strong id="correctCount">0</strong>
+            <span data-i18n="metricCorrect">correct answers</span>
+          </div>
+          <div class="metric">
+            <strong id="checklistProgress">0%</strong>
+            <span data-i18n="metricChecklist">checklist</span>
+          </div>
+        </div>
+
+        <progress id="overall" value="0" max="100"></progress>
+        <p class="note" data-i18n="noteReset">Answers and checklist reset each time the page is opened.</p>
+      </aside>
+    </section>
+
+    <section id="structure">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="structureTitle">Physics EGE Structure</h2>
+          <p class="sub" data-i18n="structureSub">Total 26 tasks: 20 short-answer and 6 extended-response.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="structureGrid"></div>
+    </section>
+
+    <section id="changes">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="changesTitle">What Matters for EGE-2026</h2>
+          <p class="sub" data-i18n="changesSub">Keep these points in mind while preparing.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="changesGrid"></div>
+    </section>
+
+    <section id="criteria">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="criteriaTitle">Criteria and Rules</h2>
+          <p class="sub" data-i18n="criteriaSub">What you need to know when completing tasks.</p>
+        </div>
+      </div>
+
+      <div class="grid" id="criteriaGrid"></div>
+    </section>
+
+    <section id="trainer">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="trainerTitle">Trainer: Part 1</h2>
+          <p class="sub" data-i18n="trainerSub">
+            For each task: <strong>1) question</strong> →
+            <strong>2) information</strong> about what the task checks →
+            <strong>3) trainer</strong>, where you answer yourself.
+            Answer options are shuffled randomly — the correct answer is not always first.
+          </p>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <span data-i18n="filterShow">Show:</span>
+        <button class="filter-btn active" data-filter="all" id="filterAll" onclick="setFilter('all', this)"></button>
+        <button class="filter-btn" data-filter="mech" id="filterMech" onclick="setFilter('mech', this)"></button>
+        <button class="filter-btn" data-filter="mol" id="filterMol" onclick="setFilter('mol', this)"></button>
+        <button class="filter-btn" data-filter="elec" id="filterElec" onclick="setFilter('elec', this)"></button>
+      </div>
+
+      <div class="reset-bar">
+        <button class="btn secondary small" onclick="resetAll()" data-i18n="resetAll">Reset all answers</button>
+      </div>
+
+      <div id="quizContainer"></div>
+      <div id="summaryBox"></div>
+    </section>
+
+    <section id="part2">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="part2Title">Part 2: Tasks 21–26</h2>
+          <p class="sub" data-i18n="part2Sub">
+            These tasks require a full justified solution. Automatic checking of only the final answer is incorrect here:
+            manual checking by criteria is needed. Below are task statements, methodological hints, approximate answers
+            where reliable, and a self-check field.
+          </p>
+        </div>
+      </div>
+
+      <div id="part2Container"></div>
+    </section>
+
+    <section id="checklist">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="checklistTitle">EGE-2026 Preparation Checklist</h2>
+          <p class="sub" data-i18n="checklistSub">Tick completed items — the checklist resets on a new page opening.</p>
+        </div>
+      </div>
+
+      <ul class="checklist" id="checklistUl"></ul>
+    </section>
+
+    <section id="plan">
+      <div class="section-head">
+        <div>
+          <h2 data-i18n="planTitle">Full 25-Day Course for Grade 11</h2>
+          <p class="sub" data-i18n="planSub">Preparation route according to the EGE-2026 structure.</p>
+        </div>
+      </div>
+
+      <div class="plan-grid" id="planGrid"></div>
+    </section>
+
+    <section id="support">
+      <div class="support-card">
+        <h2 data-i18n="supportTitle">🤝 SUPPORT THE PROJECT 💙</h2>
+        <p data-i18n="supportP1"><strong>The app is free. It was and will remain free.</strong></p>
+        <p data-i18n="supportP2">All apps are free and ad-free. Your help supports offline security and education.</p>
+        <p>
+          <span data-i18n="supportPhoneLabel">📱 TRANSFER BY PHONE NUMBER:</span>
+          <a class="phone" href="tel:89202275676">8-920-227-56-76</a>
+          <button class="btn small" onclick="copyPhone()" data-i18n="copyPhone">📋 Copy number</button>
+          <span id="copyStatus" class="copy-status" aria-live="polite"></span>
+        </p>
+        <p data-i18n="supportP3">✅ Money arrives instantly. No commission. Safe.</p>
+        <p data-i18n="supportP4">❤️ Thanks for your support!</p>
+        <p>🌟 👉 <a href="https://ancf-hue.github.io/" target="_blank" rel="noopener noreferrer" data-i18n="supportCatalog">Catalog of free offline Anti-AI Shield apps</a>.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container" data-i18n="footer">
+      Anti-AI Qwen Academy • Free HTML Project • Physics EGE-2026 • 26 Tasks
+    </div>
+  </footer>
+
+  <script>
+    const STORAGE = {
+      answers: "antiIiKvenPhys2026v4Answers",
+      checklist: "antiIiKvenPhys2026v4Checklist",
+      shuffle: "antiIiKvenPhys2026v4Shuffle",
+      manual: "antiIiKvenPhys2026v4Manual"
+    };
+
+    // ============================================================
+    // TRANSLATIONS DICTIONARY
+    // ============================================================
+    const I18N = {
+      en: {
+        docTitle: `Anti-AI Qwen Academy | Physics EGE-2026`,
+        metaDesc: `Free offline trainer and checklist for EGE Physics 2026: exam structure, 20 Part 1 tasks, 6 Part 2 tasks, criteria, preparation plan.`,
+        brandTitle: `Anti-AI Qwen Academy`,
+        brandSub: `Free EGE-2026 Projects`,
+        navStructure: `Structure`,
+        navChanges: `Important 2026`,
+        navCriteria: `Criteria`,
+        navTrainer: `Trainer`,
+        navPart2: `Part 2`,
+        navChecklist: `Checklist`,
+        navPlan: `25 Days`,
+        navSupport: `Support`,
+        badge: `Free • HTML • Physics EGE-2026 • 26 Tasks`,
+        h1: `Help you pass <span class="accent">Physics EGE</span> correctly`,
+        lead: `For each task: first the question, then information about what the task checks, then the trainer. Answer options are shuffled so you cannot guess “always the first one”. The correct answer appears only after your answer. Graphs and diagrams are embedded directly on the page.`,
+        actionTrainer: `Take the trainer`,
+        actionPart2: `Part 2`,
+        actionStructure: `Exam Structure`,
+        quickStats: `Quick Stats`,
+        metricAnswered: `auto-questions completed`,
+        metricCorrect: `correct answers`,
+        metricChecklist: `checklist`,
+        noteReset: `Answers and checklist reset each time the page is opened.`,
+        structureTitle: `Physics EGE Structure`,
+        structureSub: `Total 26 tasks: 20 short-answer and 6 extended-response.`,
+        changesTitle: `What Matters for EGE-2026`,
+        changesSub: `Keep these points in mind while preparing.`,
+        criteriaTitle: `Criteria and Rules`,
+        criteriaSub: `What you need to know when completing tasks.`,
+        trainerTitle: `Trainer: Part 1`,
+        trainerSub: `For each task: <strong>1) question</strong> → <strong>2) information</strong> about what the task checks → <strong>3) trainer</strong>, where you answer yourself. Answer options are shuffled randomly — the correct answer is not always first.`,
+        filterShow: `Show:`,
+        filterAll: `All`,
+        filterMech: `Mechanics`,
+        filterMol: `Molecular Phys.`,
+        filterElec: `Electrodynamics`,
+        resetAll: `Reset all answers`,
+        part2Title: `Part 2: Tasks 21–26`,
+        part2Sub: `These tasks require a full justified solution. Automatic checking of only the final answer is incorrect here: manual checking by criteria is needed. Below are task statements, methodological hints, approximate answers where reliable, and a self-check field.`,
+        checklistTitle: `EGE-2026 Preparation Checklist`,
+        checklistSub: `Tick completed items — the checklist resets on a new page opening.`,
+        planTitle: `Full 25-Day Course for Grade 11`,
+        planSub: `Preparation route according to the EGE-2026 structure.`,
+        dayPrefix: `Day`,
+        supportTitle: `🤝 SUPPORT THE PROJECT 💙`,
+        supportP1: `<strong>The app is free. It was and will remain free.</strong>`,
+        supportP2: `All apps are free and ad-free. Your help supports offline security and education.`,
+        supportPhoneLabel: `📱 TRANSFER BY PHONE NUMBER:`,
+        copyPhone: `📋 Copy number`,
+        copied: `✓ Copied`,
+        supportP3: `✅ Money arrives instantly. No commission. Safe.`,
+        supportP4: `❤️ Thanks for your support!`,
+        supportCatalog: `Catalog of free offline Anti-AI Shield apps`,
+        footer: `Anti-AI Qwen Academy • Free HTML Project • Physics EGE-2026 • 26 Tasks`,
+
+        // Card Content Translations
+        cardPart1Tag: `Part 1`,
+        cardPart1Title: `20 Short-Answer Tasks`,
+        cardPart1List: [
+          `The answer is a number, sequence of digits, or word.`,
+          `Tasks 1–4, 7, 8, 11–13, 16 — number.`,
+          `Tasks 5, 6, 9, 10, 14, 15, 17, 18, 20 — sequence of digits.`,
+          `Task 19 — two digits (value and error).`
+        ],
+        cardPart2Tag: `Part 2`,
+        cardPart2Title: `6 Extended-Response Tasks`,
+        cardPart2List: [
+          `Tasks 21–26 require a full solution.`,
+          `You must write formulas, calculations, and the answer.`,
+          `Graded by experts according to FIPI criteria.`
+        ],
+        cardTotalTag: `Total`,
+        cardTotalTitle: `26 Tasks, 210 Minutes`,
+        cardTotalList: [
+          `Time allowed: 3 hours 30 minutes (210 minutes).`,
+          `A ruler and non-programmable calculator are permitted.`,
+          `Maximum raw score: 45.`
+        ],
+        cardAntiAITag: `Anti-AI`,
+        cardAntiAITitle: `Check, Don't Copy`,
+        cardAntiAIText: `Ready-made AI solutions often contain physical errors, wrong formulas, and skipped steps. For EGE-2026, you need to learn to check every calculation.`,
+
+        cardStructTag: `Structure`,
+        cardStructTitle: `26 Tasks in Exam`,
+        cardStructText: `20 Part 1 short-answer tasks + 6 Part 2 extended-response tasks.`,
+        
+        cardChangeTag: `Changes 2026`,
+        cardChangeTitle: `Reduction in Number of Tasks`,
+        cardChangeText: `Was 30 tasks — now 26. Task 21 (qualitative problem) is now only Molecular Physics and Electrodynamics. Task 22 (calculation) is only Mechanics.`,
+        
+        cardFormsTag: `Part 1`,
+        cardFormsTitle: `Answer Forms`,
+        cardFormsText: `Number, sequence of digits, or word. Without spaces or extra symbols.`,
+        
+        cardRefMatTag: `Reference Materials`,
+        cardRefMatTitle: `What Is Provided`,
+        cardRefMatList: [
+          `Decimal prefixes.`,
+          `Constants (g, G, R, k, h, c, etc.).`,
+          `Particle masses, densities, specific heats.`
+        ],
+        
+        cardToolsTag: `Calculator & Ruler`,
+        cardToolsTitle: `Allowed Tools`,
+        cardToolsText: `Non-programmable calculator and ruler.`,
+        
+        cardSheetTag: `Part 2`,
+        cardSheetTitle: `Tasks 21–26`,
+        cardSheetText: `Solutions are written in Answer Sheet No. 2. Write clearly, legibly, and with full justification.`,
+        
+        cardThreshTag: `Thresholds`,
+        cardThreshTitle: `Minimum Threshold`,
+        cardThreshText: `Minimum thresholds and conversion of raw scores to test scores are set officially. Before publishing, check them against Rosobrnadzor orders and FIPI materials for 2026.`,
+        
+        cardWarnTag: `Attention`,
+        cardWarnTitle: `Typical Mistakes`,
+        cardWarnText: `Wrong formulas, lost signs, confusion in units, errors in graphs and vector quantities. Check every step.`,
+
+        cardCritShortTag: `Part 1`,
+        cardCritShortTitle: `Short Answer`,
+        cardCritShortList: [
+          `Number — integer or decimal fraction.`,
+          `Sequence of digits — no spaces or commas.`,
+          `Do not write units of measurement.`,
+          `Each symbol in a separate cell.`
+        ],
+        
+        cardCritExtTag: `Part 2`,
+        cardCritExtTitle: `Tasks 21–26`,
+        cardCritExtList: [
+          `Full solution in Sheet No. 2.`,
+          `Write the task number, then the solution.`,
+          `Solution must contain formulas and calculations.`,
+          `Write the answer with units of measurement.`
+        ],
+        
+        cardCritGradeTag: `Grading`,
+        cardCritGradeTitle: `How Grading Works`,
+        cardCritGradeList: [
+          `Part 1: 1–2 points per task.`,
+          `Part 2: from 2 to 4 points per task.`,
+          `Maximum raw score: 45.`,
+          `Exact score distribution is in the FIPI specification.`
+        ],
+        
+        cardCritToolsTag: `Tools`,
+        cardCritToolsTitle: `What Is Allowed`,
+        cardCritToolsList: [
+          `Non-programmable calculator.`,
+          `Ruler.`,
+          `Reference materials (provided).`,
+          `Scratch paper (not graded).`
+        ],
+        
+        cardCritFormulasTag: `Formulas`,
+        cardCritFormulasTitle: `What to Remember`,
+        cardCritFormulasList: [
+          `Kinematics: v = v₀ + at; x = x₀ + v₀t + at²/2.`,
+          `Dynamics: F = ma; F_spring = kx; F_friction = μN.`,
+          `Momentum: p = mv; Δp = FΔt.`,
+          `Thermodynamics: Q = ΔU + A; pV = νRT.`,
+          `Electrostatics: F = kq₁q₂/r².`,
+          `Electromagnetism: ε = −L·ΔI/Δt.`
+        ],
+        
+        cardCritSelfTag: `Verification`,
+        cardCritSelfTitle: `How to Check Yourself`,
+        cardCritSelfList: [
+          `Check the dimensionality of the result.`,
+          `Check the sign.`,
+          `Judge whether the result is plausible.`,
+          `Check every step of the solution.`
+        ],
+        
+        cardCritErrTag: `Attention`,
+        cardCritErrTitle: `Typical Mistakes`,
+        cardCritErrList: [
+          `Incorrect formula.`,
+          `Lost minus sign.`,
+          `Confusion in units of measurement.`,
+          `Errors in reading graphs.`
+        ],
+        
+        cardCritFrameTag: `Structure`,
+        cardCritFrameTitle: `Framework for Solving Part 2`,
+        cardCritFrameList: [
+          `1. Write down "Given".`,
+          `2. Write down formulas.`,
+          `3. Perform mathematical transformations.`,
+          `4. Substitute numbers.`,
+          `5. Write the answer with units of measurement.`
+        ],
+
+        // Quiz Labels
+        qLabel1: `1. Question`,
+        qLabel2: `2. Task Info`,
+        qLabel3: `3. Trainer — Answer Yourself`,
+        resCorrect: `✅ Correct!`,
+        resWrong: `❌ Wrong.`,
+        resAns: `Correct answer:`,
+        resExp: `Explanation:`,
+        resSrc: `Source:`,
+        sumDone: `Auto-questions completed:`,
+        sumOf: `of`,
+        sumCorr: `Correct answers:`,
+        sumFin: `Answer all auto-questions to see the final result.`,
+        verExc: `Excellent result! You are well prepared for EGE-2026.`,
+        verGood: `Good, but analyze the task mistakes.`,
+        verNeed: `You need to carefully work through the EGE-2026 tasks.`,
+        confReset: `Reset all answers and shuffle options again?`,
+        errCopy: `Could not copy automatically. Number: `,
+        
+        // Part 2 Labels
+        p2Tag: `Part 2`,
+        p2Task: `Task`,
+        p2Hint: `Verification / Hint:`,
+        p2InputLbl: `Your final answer or short self-check note (this session):`,
+        p2Placeholder: `Enter your answer or note...`,
+
+        // Topic Labels
+        topicMech: `Mechanics`,
+        topicMol: `Molecular Physics`,
+        topicElec: `Electrodynamics`,
+
+        // Timer Labels
+        timerPhys: `Physics — 210 min`,
+        timerPractice: `Practice — 60 min`,
+        timerUp: `Time is up!`,
+        timerStart: `Start timer`,
+        timerPause: `Pause timer`,
+        timerReset: `Reset timer`
+      },
+      ru: {
+        docTitle: `Анти-ИИ Квен Академия | Физика ЕГЭ-2026`,
+        metaDesc: `Бесплатный тренажёр и чек-лист подготовки к ЕГЭ по физике 2026: структура экзамена, 20 заданий части 1, 6 заданий части 2, критерии, план подготовки.`,
+        brandTitle: `Анти-ИИ Квен Академия`,
+        brandSub: `Бесплатные проекты ЕГЭ-2026`,
+        navStructure: `Структура`,
+        navChanges: `Важно 2026`,
+        navCriteria: `Критерии`,
+        navTrainer: `Тренажёр`,
+        navPart2: `Часть 2`,
+        navChecklist: `Чек-лист`,
+        navPlan: `25 дней`,
+        navSupport: `Поддержать`,
+        badge: `Бесплатно • HTML • Физика ЕГЭ-2026 • 26 заданий`,
+        h1: `Поможем сдать <span class="accent">ЕГЭ по физике</span> правильно`,
+        lead: `По каждому заданию: сначала вопрос, потом информация о том, что проверяет это задание, потом тренажёр. Варианты ответов перемешиваются, чтобы нельзя было угадать «всегда первый». Правильный ответ появляется только после твоего ответа. Рисунки и графики встроены прямо на страницу.`,
+        actionTrainer: `Пройти тренажёр`,
+        actionPart2: `Часть 2`,
+        actionStructure: `Структура экзамена`,
+        quickStats: `Быстрая статистика`,
+        metricAnswered: `автовопросов пройдено`,
+        metricCorrect: `правильных ответов`,
+        metricChecklist: `чек-лист`,
+        noteReset: `Ответы и чек-лист сбрасываются при каждом открытии страницы.`,
+        structureTitle: `Структура ЕГЭ по физике`,
+        structureSub: `Всего 26 заданий: 20 с кратким ответом и 6 с развёрнутым решением.`,
+        changesTitle: `Что важно учесть в ЕГЭ-2026`,
+        changesSub: `Эти пункты нужно держать в голове при подготовке.`,
+        criteriaTitle: `Критерии и правила`,
+        criteriaSub: `Что важно знать при выполнении заданий.`,
+        trainerTitle: `Тренажёр: часть 1`,
+        trainerSub: `По каждому заданию: <strong>1) вопрос</strong> → <strong>2) информация</strong> о том, что проверяет задание → <strong>3) тренажёр</strong>, где ты отвечаешь сам. Варианты ответов перемешиваются случайно — правильный ответ не всегда стоит первым.`,
+        filterShow: `Показать:`,
+        filterAll: `Все`,
+        filterMech: `Механика`,
+        filterMol: `Молекулярная`,
+        filterElec: `Электродинамика`,
+        resetAll: `Сбросить все ответы`,
+        part2Title: `Часть 2: задания 21–26`,
+        part2Sub: `Эти задания требуют полного обоснованного решения. Автоматическая проверка одного финального ответа здесь некорректна: нужна ручная проверка по критериям. Ниже — условия заданий, методические подсказки, ориентировочные ответы (где они надёжны) и поле для самопроверки.`,
+        checklistTitle: `Чек-лист подготовки к ЕГЭ-2026`,
+        checklistSub: `Отмечай выполненные пункты — при новом открытии страницы чек-лист сбросится.`,
+        planTitle: `Полный курс 25 дней для 11 класса`,
+        planSub: `Маршрут подготовки по структуре ЕГЭ-2026.`,
+        dayPrefix: `День`,
+        supportTitle: `🤝 ПОДДЕРЖАТЬ ПРОЕКТ 💙`,
+        supportP1: `<strong>Приложение бесплатное. Было и останется.</strong>`,
+        supportP2: `Все приложения бесплатны и без рекламы. Ваша помощь помогает развитию офлайн-безопасности и образования.`,
+        supportPhoneLabel: `📱 ПЕРЕВОД ПО НОМЕРУ ТЕЛЕФОНА:`,
+        copyPhone: `📋 Копировать номер`,
+        copied: `✓ Скопировано`,
+        supportP3: `✅ Деньги придут мгновенно. Без комиссии. Безопасно.`,
+        supportP4: `❤️ Спасибо за поддержку!`,
+        supportCatalog: `Каталог бесплатных офлайн-приложений Anti-AI Shield`,
+        footer: `Анти-ИИ Квен Академия • Бесплатный HTML-проект • Физика ЕГЭ-2026 • 26 заданий`,
+
+        // Card Content Translations
+        cardPart1Tag: `Часть 1`,
+        cardPart1Title: `20 заданий с кратким ответом`,
+        cardPart1List: [
+          `Ответ — число, последовательность цифр или слово.`,
+          `Задания 1–4, 7, 8, 11–13, 16 — число.`,
+          `Задания 5, 6, 9, 10, 14, 15, 17, 18, 20 — последовательность цифр.`,
+          `Задание 19 — две цифры (значение и погрешность).`
+        ],
+        cardPart2Tag: `Часть 2`,
+        cardPart2Title: `6 заданий с развёрнутым решением`,
+        cardPart2List: [
+          `Задания 21–26 — полное решение.`,
+          `Нужно записать формулы, расчёты и ответ.`,
+          `Проверяется экспертами по критериям ФИПИ.`
+        ],
+        cardTotalTag: `Итого`,
+        cardTotalTitle: `26 заданий, 210 минут`,
+        cardTotalList: [
+          `Время выполнения — 3 часа 30 минут (210 минут).`,
+          `Разрешены линейка и непрограммируемый калькулятор.`,
+          `Максимальный первичный балл — 45.`
+        ],
+        cardAntiAITag: `Анти-ИИ`,
+        cardAntiAITitle: `Проверяй, а не копируй`,
+        cardAntiAIText: `Готовые ИИ-решения часто содержат физические ошибки, неверные формулы и пропущенные шаги. Для ЕГЭ-2026 нужно учиться проверять каждое вычисление.`,
+
+        cardStructTag: `Структура`,
+        cardStructTitle: `26 заданий в работе`,
+        cardStructText: `20 заданий части 1 с кратким ответом + 6 заданий части 2 с развёрнутым решением.`,
+        
+        cardChangeTag: `Изменения 2026`,
+        cardChangeTitle: `Сокращение числа заданий`,
+        cardChangeText: `Было 30 заданий — стало 26. Задание 21 (качественная задача) теперь только по молекулярной физике и электродинамике. Задание 22 (расчётная) — только по механике.`,
+        
+        cardFormsTag: `Часть 1`,
+        cardFormsTitle: `Формы ответа`,
+        cardFormsText: `Число, последовательность цифр или слово. Без пробелов и лишних символов.`,
+        
+        cardRefMatTag: `Справочные материалы`,
+        cardRefMatTitle: `Что выдаётся`,
+        cardRefMatList: [
+          `Десятичные приставки.`,
+          `Константы (g, G, R, k, h, c и другие).`,
+          `Массы частиц, плотности, удельные теплоёмкости.`
+        ],
+        
+        cardToolsTag: `Калькулятор и линейка`,
+        cardToolsTitle: `Что разрешено`,
+        cardToolsText: `Непрограммируемый калькулятор и линейка.`,
+        
+        cardSheetTag: `Часть 2`,
+        cardSheetTitle: `Задания 21–26`,
+        cardSheetText: `Решения записываются в бланк ответов № 2. Нужно писать чётко, разборчиво и с полным обоснованием.`,
+        
+        cardThreshTag: `Пороги`,
+        cardThreshTitle: `Минимальный порог`,
+        cardThreshText: `Минимальные пороги и перевод первичных баллов в тестовые устанавливаются официально. Перед публикацией сверяйте их с приказами Рособрнадзора и материалами ФИПИ на 2026 год.`,
+        
+        cardWarnTag: `Внимание`,
+        cardWarnTitle: `Типичные ошибки`,
+        cardWarnText: `Неверные формулы, потеря знака, путаница в единицах, ошибки в графиках и векторных величинах. Проверяй каждое действие.`,
+
+        cardCritShortTag: `Часть 1`,
+        cardCritShortTitle: `Краткий ответ`,
+        cardCritShortList: [
+          `Число — целое или десятичная дробь.`,
+          `Последовательность цифр — без пробелов и запятых.`,
+          `Единицы измерения писать не нужно.`,
+          `Каждый символ — в отдельной клетке.`
+        ],
+        
+        cardCritExtTag: `Часть 2`,
+        cardCritExtTitle: `Задания 21–26`,
+        cardCritExtList: [
+          `Полное решение в бланке № 2.`,
+          `Записывается номер задания, затем решение.`,
+          `Решение должно содержать формулы и расчёты.`,
+          `Ответ записывается с единицами измерения.`
+        ],
+        
+        cardCritGradeTag: `Оценка`,
+        cardCritGradeTitle: `Как оценивают`,
+        cardCritGradeList: [
+          `Часть 1: 1–2 балла за задание.`,
+          `Часть 2: от 2 до 4 баллов за задание.`,
+          `Максимальный первичный балл — 45.`,
+          `Точное распределение баллов — в спецификации ФИПИ.`
+        ],
+        
+        cardCritToolsTag: `Инструменты`,
+        cardCritToolsTitle: `Что разрешено`,
+        cardCritToolsList: [
+          `Непрограммируемый калькулятор.`,
+          `Линейка.`,
+          `Справочные материалы (выдаются).`,
+          `Черновик (не учитывается).`
+        ],
+        
+        cardCritFormulasTag: `Формулы`,
+        cardCritFormulasTitle: `Что нужно помнить`,
+        cardCritFormulasList: [
+          `Кинематика: v = v₀ + at; x = x₀ + v₀t + at²/2.`,
+          `Динамика: F = ma; F_упр = kx; F_тр = μN.`,
+          `Импульс: p = mv; Δp = FΔt.`,
+          `Термодинамика: Q = ΔU + A; pV = νRT.`,
+          `Электростатика: F = kq₁q₂/r².`,
+          `Электромагнетизм: ε = −L·ΔI/Δt.`
+        ],
+        
+        cardCritSelfTag: `Проверка`,
+        cardCritSelfTitle: `Как проверять себя`,
+        cardCritSelfList: [
+          `Проверь размерность результата.`,
+          `Проверь знак.`,
+          `Оцени правдоподобность результата.`,
+          `Проверь каждый шаг решения.`
+        ],
+        
+        cardCritErrTag: `Внимание`,
+        cardCritErrTitle: `Типичные ошибки`,
+        cardCritErrList: [
+          `Неверная формула.`,
+          `Потеря знака «минус».`,
+          `Путаница в единицах измерения.`,
+          `Ошибки в чтении графиков.`
+        ],
+        
+        cardCritFrameTag: `Структура`,
+        cardCritFrameTitle: `Каркас решения части 2`,
+        cardCritFrameList: [
+          `1. Записать «Дано».`,
+          `2. Записать формулы.`,
+          `3. Провести математические преобразования.`,
+          `4. Подставить числа.`,
+          `5. Записать ответ с единицами измерения.`
+        ],
+
+        // Quiz Labels
+        qLabel1: `1. Вопрос`,
+        qLabel2: `2. Информация о задании`,
+        qLabel3: `3. Тренажёр — ответь сам`,
+        resCorrect: `✅ Правильно!`,
+        resWrong: `❌ Неправильно.`,
+        resAns: `Правильный ответ:`,
+        resExp: `Пояснение:`,
+        resSrc: `Источник:`,
+        sumDone: `Пройдено автовопросов:`,
+        sumOf: `из`,
+        sumCorr: `Правильных ответов:`,
+        sumFin: `Ответь на все автовопросы, чтобы увидеть итог.`,
+        verExc: `Отличный результат! Ты хорошо готов к ЕГЭ-2026.`,
+        verGood: `Хорошо, но разбери ошибки по заданиям.`,
+        verNeed: `Нужно внимательно проработать задания ЕГЭ-2026.`,
+        confReset: `Сбросить все ответы и перемешать варианты заново?`,
+        errCopy: `Не удалось скопировать автоматически. Номер: `,
+        
+        // Part 2 Labels
+        p2Tag: `Часть 2`,
+        p2Task: `Задание`,
+        p2Hint: `Проверка / подсказка:`,
+        p2InputLbl: `Твой итог для самопроверки (в этой сессии):`,
+        p2Placeholder: `Впиши свой ответ или пометку...`,
+
+        // Topic Labels
+        topicMech: `Механика`,
+        topicMol: `Молекулярная физика`,
+        topicElec: `Электродинамика`,
+
+        // Timer Labels
+        timerPhys: `Физика — 210 мин`,
+        timerPractice: `Тренировка — 60 мин`,
+        timerUp: `Время вышло!`,
+        timerStart: `Запустить таймер`,
+        timerPause: `Пауза таймера`,
+        timerReset: `Сброс таймера`
+      }
+    };
+
+    let currentLang = "en";
+
+    function loc(key) {
+      return I18N[currentLang][key] || "";
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, function (m) {
+        return {
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[m];
+      });
+    }
+
+    function scrollToId(id) {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    // ============================================================
+    // DATA STRUCTURES (Translated Content)
+    // ============================================================
+    
+    const structureCardsData = [
+      { tagKey: "cardPart1Tag", titleKey: "cardPart1Title", listKey: "cardPart1List", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardPart2Tag", titleKey: "cardPart2Title", listKey: "cardPart2List", cls: "danger-card", tagCls: "red" },
+      { tagKey: "cardTotalTag", titleKey: "cardTotalTitle", listKey: "cardTotalList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardAntiAITag", titleKey: "cardAntiAITitle", textKey: "cardAntiAIText", cls: "", tagCls: "" }
+    ];
+
+    const changesCardsData = [
+      { tagKey: "cardStructTag", titleKey: "cardStructTitle", textKey: "cardStructText", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardChangeTag", titleKey: "cardChangeTitle", textKey: "cardChangeText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardFormsTag", titleKey: "cardFormsTitle", textKey: "cardFormsText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardRefMatTag", titleKey: "cardRefMatTitle", listKey: "cardRefMatList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardToolsTag", titleKey: "cardToolsTitle", textKey: "cardToolsText", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardSheetTag", titleKey: "cardSheetTitle", textKey: "cardSheetText", cls: "", tagCls: "" },
+      { tagKey: "cardThreshTag", titleKey: "cardThreshTitle", textKey: "cardThreshText", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardWarnTag", titleKey: "cardWarnTitle", textKey: "cardWarnText", cls: "danger-card", tagCls: "red" }
+    ];
+
+    const criteriaCardsData = [
+      { tagKey: "cardCritShortTag", titleKey: "cardCritShortTitle", listKey: "cardCritShortList", cls: "", tagCls: "" },
+      { tagKey: "cardCritExtTag", titleKey: "cardCritExtTitle", listKey: "cardCritExtList", cls: "warn-card", tagCls: "orange" },
+      { tagKey: "cardCritGradeTag", titleKey: "cardCritGradeTitle", listKey: "cardCritGradeList", cls: "danger-card", tagCls: "red" },
+      { tagKey: "cardCritToolsTag", titleKey: "cardCritToolsTitle", listKey: "cardCritToolsList", cls: "", tagCls: "" },
+      { tagKey: "cardCritFormulasTag", titleKey: "cardCritFormulasTitle", listKey: "cardCritFormulasList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardCritSelfTag", titleKey: "cardCritSelfTitle", listKey: "cardCritSelfList", cls: "success-card", tagCls: "green" },
+      { tagKey: "cardCritErrTag", titleKey: "cardCritErrTitle", listKey: "cardCritErrList", cls: "danger-card", tagCls: "red" },
+      { tagKey: "cardCritFrameTag", titleKey: "cardCritFrameTitle", listKey: "cardCritFrameList", cls: "", tagCls: "" }
+    ];
+
+    const checklistItemsData = [
+      { key: "ch1", labelEn: "Reviewed kinematics (uniform and uniformly accelerated motion)", labelRu: "Повторил кинематику (равномерное и равноускоренное движение)" },
+      { key: "ch2", labelEn: "Practiced Newton's laws and forces in mechanics", labelRu: "Отработал законы Ньютона и силы в механике" },
+      { key: "ch3", labelEn: "Reviewed momentum, work, energy, conservation laws", labelRu: "Повторил импульс, работу, энергию, законы сохранения" },
+      { key: "ch4", labelEn: "Practiced statics, hydrostatics, oscillations and waves", labelRu: "Отработал статику, гидростатику, колебания и волны" },
+      { key: "ch5", labelEn: "Reviewed Kinetic Theory of Matter and Ideal Gas Law", labelRu: "Повторил МКТ и уравнение состояния идеального газа" },
+      { key: "ch6", labelEn: "Practiced thermodynamics: first law, heat, work", labelRu: "Отработал термодинамику: первый закон, теплота, работа" },
+      { key: "ch7", labelEn: "Reviewed electrostatics and Coulomb's law", labelRu: "Повторил электростатику и закон Кулона" },
+      { key: "ch8", labelEn: "Practiced DC circuits, Ohm's laws, conductor connections", labelRu: "Отработал постоянный ток, законы Ома, соединения проводников" },
+      { key: "ch9", labelEn: "Reviewed magnetic field, Ampere force, Lorentz force", labelRu: "Повторил магнитное поле, силу Ампера, силу Лоренца" },
+      { key: "ch10", labelEn: "Practiced electromagnetic induction and self-inductance", labelRu: "Отработал электромагнитную индукцию и самоиндукцию" },
+      { key: "ch11", labelEn: "Reviewed geometric optics: lenses, reflection, refraction", labelRu: "Повторил геометрическую оптику: линзы, отражение, преломление" },
+      { key: "ch12", labelEn: "Practiced wave optics: interference, diffraction", labelRu: "Отработал волновую оптику: интерференция, дифракция" },
+      { key: "ch13", labelEn: "Reviewed quantum physics: photoelectric effect, photon energy", labelRu: "Повторил квантовую физику: фотоэффект, энергия фотона" },
+      { key: "ch14", labelEn: "Practiced atom and atomic nucleus, radioactive decay", labelRu: "Отработал атом и атомное ядро, радиоактивный распад" },
+      { key: "ch15", labelEn: "Checked reading of graphs and tables", labelRu: "Проверил чтение графиков и таблиц" },
+      { key: "ch16", labelEn: "Practiced scientific methods and experiment planning", labelRu: "Отработал методы научного познания и планирование эксперимента" },
+      { key: "ch17", labelEn: "Performed oral analysis of conditions in 3–4 minutes", labelRu: "Провёл устный анализ условия за 3–4 минуты" },
+      { key: "ch18", labelEn: "Checked that there are no physical errors in the solution", labelRu: "Проверил, что в решении нет физических ошибок" },
+      { key: "ch19", labelEn: "Made sure all steps of the solution are justified", labelRu: "Убедился, что все шаги решения обоснованы" },
+      { key: "ch20", labelEn: "Solved 20 Part 1 tasks under time", labelRu: "Решил 20 заданий части 1 на время" },
+      { key: "ch21", labelEn: "Memorized structure: 20 Part 1 tasks + 6 Part 2 tasks = 26", labelRu: "Запомнил структуру: 20 заданий части 1 + 6 заданий части 2 = 26" }
+    ];
+
+    const planDaysData = [
+      { day: 1, critical: true, en: "Diagnostics: exam structure, 20 Part 1 tasks + 6 Part 2 tasks, weak topics.", ru: "Диагностика: структура экзамена, 20 заданий части 1 + 6 заданий части 2, слабые темы." },
+      { day: 2, critical: false, en: "Kinematics: uniform and uniformly accelerated motion, graphs.", ru: "Кинематика: равномерное и равноускоренное движение, графики." },
+      { day: 3, critical: false, en: "Dynamics: Newton's laws, forces, circular motion.", ru: "Динамика: законы Ньютона, силы, движение по окружности." },
+      { day: 4, critical: false, en: "Momentum, work, energy, conservation laws.", ru: "Импульс, работа, энергия, законы сохранения." },
+      { day: 5, critical: false, en: "Statics, hydrostatics, pressure.", ru: "Статика, гидростатика, давление." },
+      { day: 6, critical: false, en: "Oscillations and waves.", ru: "Колебания и волны." },
+      { day: 7, critical: false, en: "KMT, equation of state, gas laws.", ru: "МКТ, уравнение состояния, газовые законы." },
+      { day: 8, critical: false, en: "Thermodynamics: first law, heat, work.", ru: "Термодинамика: первый закон, теплота, работа." },
+      { day: 9, critical: false, en: "Electrostatics, Coulomb's law, electric field strength.", ru: "Электростатика, закон Кулона, напряжённость." },
+      { day: 10, critical: false, en: "DC circuits: Ohm's laws, conductor connections.", ru: "Постоянный ток: законы Ома, соединения проводников." },
+      { day: 11, critical: false, en: "Magnetic field, Ampere force, Lorentz force.", ru: "Магнитное поле, сила Ампера, сила Лоренца." },
+      { day: 12, critical: false, en: "Electromagnetic induction, self-inductance.", ru: "Электромагнитная индукция, самоиндукция." },
+      { day: 13, critical: false, en: "Geometric optics: lenses, reflection, refraction.", ru: "Геометрическая оптика: линзы, отражение, преломление." },
+      { day: 14, critical: false, en: "Wave optics, quantum physics.", ru: "Волновая оптика, квантовая физика." },
+      { day: 15, critical: true, en: "Atom and atomic nucleus, radioactive decay.", ru: "Атом и атомное ядро, радиоактивный распад." },
+      { day: 16, critical: true, en: "Task 21: qualitative problem.", ru: "Задание 21: качественная задача." },
+      { day: 17, critical: true, en: "Task 22: calculation problem in mechanics.", ru: "Задание 22: расчётная задача по механике." },
+      { day: 18, critical: true, en: "Task 23: electromagnetism.", ru: "Задание 23: электромагнетизм." },
+      { day: 19, critical: true, en: "Task 24: molecular physics and thermodynamics.", ru: "Задание 24: молекулярная физика и термодинамика." },
+      { day: 20, critical: true, en: "Task 25: geometric optics.", ru: "Задание 25: геометрическая оптика." },
+      { day: 21, critical: true, en: "Task 26: mechanics (dynamics, pulley, spring).", ru: "Задание 26: механика (динамика, блок, пружина)." },
+      { day: 22, critical: false, en: "Scientific methods, experiment planning.", ru: "Методы научного познания, планирование эксперимента." },
+      { day: 23, critical: false, en: "Full practice test: Part 1 under time.", ru: "Полный пробник: часть 1 на время." },
+      { day: 24, critical: false, en: "Full practice test: Part 2 under time.", ru: "Полный пробник: часть 2 на время." },
+      { day: 25, critical: false, en: "Final checklist and mistake analysis.", ru: "Финальный чек-лист и разбор ошибок." }
+    ];
+
+    // Quiz Data with Separate Options Arrays for RU and EN
+    const quizRaw = [
+      {
+        id: 1, topic: "mech", task: 1, figure: "fig1",
+        en: {
+          text: `The figure shows the graph of the projection vx of the velocity of a body versus time t. What is the projection ax of the acceleration of this body in the time interval from 2 to 3 s? Write the answer taking into account the sign of the projection.`,
+          info: `Task 1 checks the ability to read graphs of kinematic quantities. Acceleration is the tangent of the angle of inclination of the vx(t) graph.`,
+          explanation: `In the segment from 2 to 3 s: at t = 2 s vx = 4 m/s; at t = 3 s vx = −12 m/s. ax = (−12 − 4) / (3 − 2) = −16 / 1 = −16 m/s². Keep the minus sign.`,
+          source: `Physics EGE-2026, Task 1`
+        },
+        ru: {
+          text: `На рисунке показан график зависимости проекции vx скорости тела от времени t. Какова проекция ax ускорения этого тела в интервале времени от 2 до 3 с? Ответ запишите с учётом знака проекции.`,
+          info: `Задание 1 проверяет умение читать графики кинематических величин. Ускорение — это тангенс угла наклона графика vx(t).`,
+          explanation: `На участке от 2 до 3 с: при t = 2 с vx = 4 м/с; при t = 3 с vx = −12 м/с. ax = (−12 − 4) / (3 − 2) = −16 / 1 = −16 м/с². Знак минус сохраняем.`,
+          source: `Физика ЕГЭ-2026, задание 1`
+        },
+        enOptions: ["−16 m/s²", "16 m/s²", "−4 m/s²", "4 m/s²"],
+        ruOptions: ["−16 м/с²", "16 м/с²", "−4 м/с²", "4 м/с²"],
+        correctIndex: 0
+      },
+      {
+        id: 2, topic: "mech", task: 2, figure: "fig2",
+        en: {
+          text: `The figure presents the graph of the dependence of the magnitude of the elastic force F on the extension of the spring x. What is the stiffness of the spring?`,
+          info: `Task 2 checks knowledge of Hooke's law. Stiffness is the proportionality coefficient between the elastic force and the extension.`,
+          explanation: `According to Hooke's law F = kx. From the graph: at x = 6 cm = 0.06 m, the force F = 15 N. Then k = F/x = 15 / 0.06 = 250 N/m.`,
+          source: `Physics EGE-2026, Task 2`
+        },
+        ru: {
+          text: `На рисунке представлен график зависимости модуля силы упругости F от удлинения пружины x. Какова жёсткость пружины?`,
+          info: `Задание 2 проверяет знание закона Гука. Жёсткость — это коэффициент пропорциональности между силой упругости и удлинением.`,
+          explanation: `По закону Гука F = kx. По графику: при x = 6 см = 0,06 м сила F = 15 Н. Тогда k = F/x = 15 / 0,06 = 250 Н/м.`,
+          source: `Физика ЕГЭ-2026, задание 2`
+        },
+        enOptions: ["250 N/m", "25 N/m", "2.5 N/m", "0.25 N/m"],
+        ruOptions: ["250 Н/м", "25 Н/м", "2,5 Н/м", "0,25 Н/м"],
+        correctIndex: 0
+      },
+      {
+        id: 3, topic: "mech", task: 3,
+        en: {
+          text: `A body moves in an inertial reference frame along a straight line in one direction. At the same time, the resultant of all forces acting on the body is constant and equal in magnitude to 12 N. What is the magnitude of the change in momentum of the body over 4 s?`,
+          info: `Task 3 checks knowledge of Newton's second law in impulse form: F·Δt = Δp.`,
+          explanation: `F·Δt = Δp. Δp = 12 N × 4 s = 48 kg·m/s.`,
+          source: `Physics EGE-2026, Task 3`
+        },
+        ru: {
+          text: `Тело движется в инерциальной системе отсчёта по прямой в одном направлении. При этом равнодействующая всех сил, действующих на тело, постоянна и равна по модулю 12 Н. Каков модуль изменения импульса тела за 4 с?`,
+          info: `Задание 3 проверяет знание второго закона Ньютона в импульсной форме: F·Δt = Δp.`,
+          explanation: `F·Δt = Δp. Δp = 12 Н × 4 с = 48 кг·м/с.`,
+          source: `Физика ЕГЭ-2026, задание 3`
+        },
+        enOptions: ["48 kg·m/s", "3 kg·m/s", "16 kg·m/s", "0 kg·m/s"],
+        ruOptions: ["48 кг·м/с", "3 кг·м/с", "16 кг·м/с", "0 кг·м/с"],
+        correctIndex: 0
+      },
+      {
+        id: 4, topic: "mech", task: 4,
+        en: {
+          text: `A homogeneous body with a volume of 1 cm³ is made of aluminum. This body is completely submerged in water but does not touch the bottom of the vessel. Determine the Archimedes force acting on the body.`,
+          info: `Task 4 checks knowledge of Archimedes' principle: F_A = ρ_fluid · g · V_submerged.`,
+          explanation: `V = 1 cm³ = 1·10⁻⁶ m³. F_A = ρ_water · g · V = 1000 × 10 × 1·10⁻⁶ = 0.01 N.`,
+          source: `Physics EGE-2026, Task 4`
+        },
+        ru: {
+          text: `Однородное тело объёмом 1 см³ изготовлено из алюминия. Это тело полностью погружено в воду, но не касается дна сосуда. Определите архимедову силу, действующую на тело.`,
+          info: `Задание 4 проверяет знание закона Архимеда: F_A = ρ_ж · g · V_погр.`,
+          explanation: `V = 1 см³ = 1·10⁻⁶ м³. F_A = ρ_воды · g · V = 1000 × 10 × 1·10⁻⁶ = 0,01 Н.`,
+          source: `Физика ЕГЭ-2026, задание 4`
+        },
+        enOptions: ["0.01 N", "0.1 N", "1 N", "10 N"],
+        ruOptions: ["0,01 Н", "0,1 Н", "1 Н", "10 Н"],
+        correctIndex: 0
+      },
+      {
+        id: 5, topic: "mech", task: 5,
+        en: {
+          text: `In a laboratory study, the motion of a bar with mass 400 g on a horizontal rough surface under the action of a horizontal constant force of 1.6 N was investigated. Data on the dependence of the magnitude of the bar's speed on time: t = 0, 1, 2, 3, 4, 5, 6 s; v = 0; 0.5; 1.0; 1.5; 2.0; 2.5; 3.0 m/s.\n\nChoose all correct statements.\n1) μ = 0.35\n2) At moment 2 s Ek = 0.2 J\n3) The bar moves uniformly\n4) The magnitude of the bar's acceleration is 0.5 m/s²\n5) The friction force is 1.8 N`,
+          info: `Task 5 checks the ability to analyze tabular data and apply the laws of dynamics.`,
+          explanation: `From the table: a = Δv/Δt = 0.5 m/s² (4 is correct). m = 0.4 kg; Ek(2 s) = mv²/2 = 0.4·1²/2 = 0.2 J (2 is correct). F − F_friction = ma → F_friction = 1.6 − 0.4·0.5 = 1.4 N. μ = 1.4/(0.4·10) = 0.35 (1 is correct). Motion is uniformly accelerated (3 is incorrect). Friction force is 1.4 N (5 is incorrect).`,
+          source: `Physics EGE-2026, Task 5`
+        },
+        ru: {
+          text: `В лабораторной работе изучали движение бруска массой 400 г по горизонтальной шероховатой поверхности под действием горизонтальной постоянной силы 1,6 Н. Данные о зависимости модуля скорости бруска от времени: t = 0, 1, 2, 3, 4, 5, 6 с; v = 0; 0,5; 1,0; 1,5; 2,0; 2,5; 3,0 м/с.\n\nВыберите все верные утверждения.\n1) μ = 0,35\n2) В момент 2 с Ek = 0,2 Дж\n3) Брусок движется равномерно\n4) Модуль ускорения бруска 0,5 м/с²\n5) Сила трения равна 1,8 Н`,
+          info: `Задание 5 проверяет умение анализировать табличные данные и применять законы динамики.`,
+          explanation: `По таблице: a = Δv/Δt = 0,5 м/с² (4 — верно). m = 0,4 кг; Ek(2 с) = mv²/2 = 0,4·1²/2 = 0,2 Дж (2 — верно). F − F_тр = ma → F_тр = 1,6 − 0,4·0,5 = 1,4 Н. μ = 1,4/(0,4·10) = 0,35 (1 — верно). Движение равноускоренное (3 — неверно). Сила трения 1,4 Н (5 — неверно).`,
+          source: `Физика ЕГЭ-2026, задание 5`
+        },
+        enOptions: ["1, 2, 4", "1, 3", "3, 5", "2, 5"],
+        ruOptions: ["1, 2, 4", "1, 3", "3, 5", "2, 5"], // Numbers are universal
+        correctIndex: 0
+      },
+      {
+        id: 6, topic: "mech", task: 6, figure: "fig6",
+        en: {
+          text: `A load tied to a thread was deflected from the equilibrium position and released from rest at moment t = 0. Graphs A and B show the change in physical quantities during harmonic oscillations. T is the period. Potential energy is counted from the equilibrium position.\n\nEstablish correspondence: A) graph starting from zero; B) graph maximum at t = 0.\n\n1) projection of velocity vx\n2) potential energy Ep\n3) kinetic energy Ek\n4) coordinate x`,
+          info: `Task 6 checks the ability to distinguish graphs of kinematic and energetic quantities during harmonic oscillations.`,
+          explanation: `The load is released from rest (t = 0, v = 0, x is maximum). Graph A starts from zero → this is vx (1). Graph B is maximum at t = 0 → this is potential energy Ep (2).`,
+          source: `Physics EGE-2026, Task 6`
+        },
+        ru: {
+          text: `Груз, привязанный к нити, отклонили от положения равновесия и в момент t = 0 отпустили из состояния покоя. На графиках А и Б показано изменение физических величин при гармонических колебаниях. T — период. Потенциальная энергия отсчитывается от положения равновесия.\n\nУстановите соответствие: А) график, начинающийся с нуля; Б) график, максимальный при t = 0.\n\n1) проекция скорости vx\n2) потенциальная энергия Ep\n3) кинетическая энергия Ek\n4) координата x`,
+          info: `Задание 6 проверяет умение различать графики кинематических и энергетических величин при гармонических колебаниях.`,
+          explanation: `Груз отпускают из состояния покоя (t = 0, v = 0, x максимально). График А начинается с нуля → это vx (1). График Б максимален при t = 0 → это потенциальная энергия Ep (2).`,
+          source: `Физика ЕГЭ-2026, задание 6`
+        },
+        enOptions: ["A-1, B-2", "A-4, B-3", "A-2, B-1", "A-3, B-4"],
+        ruOptions: ["А-1, Б-2", "А-4, Б-3", "А-2, Б-1", "А-3, Б-4"],
+        correctIndex: 0
+      },
+      {
+        id: 7, topic: "mol", task: 7,
+        en: {
+          text: `At temperature T₀ and pressure p₀, 1.5 moles of an ideal gas occupy a volume of 3V₀. How many moles of this gas will occupy a volume of 6V₀ at temperature T₀/2 and pressure p₀/2?`,
+          info: `Task 7 checks the ability to apply the Mendeleev-Clapeyron equation pV = νRT.`,
+          explanation: `pV = νRT. From the first state: p₀ · 3V₀ = 1.5 · R · T₀ → p₀V₀ / (RT₀) = 0.5. For the second state: (p₀/2) · 6V₀ = ν · R · (T₀/2) → ν = 6 · p₀V₀ / (R · T₀) = 6 · 0.5 = 3 moles.`,
+          source: `Physics EGE-2026, Task 7`
+        },
+        ru: {
+          text: `При температуре T₀ и давлении p₀ 1,5 моль идеального газа занимает объём 3V₀. Сколько моль этого газа будут занимать объём 6V₀ при температуре T₀/2 и давлении p₀/2?`,
+          info: `Задание 7 проверяет умение применять уравнение Менделеева — Клапейрона pV = νRT.`,
+          explanation: `pV = νRT. Из первого состояния: p₀ · 3V₀ = 1,5 · R · T₀ → p₀V₀ / (RT₀) = 0,5. Для второго состояния: (p₀/2) · 6V₀ = ν · R · (T₀/2) → ν = 6 · p₀V₀ / (R · T₀) = 6 · 0,5 = 3 моль.`,
+          source: `Физика ЕГЭ-2026, задание 7`
+        },
+        enOptions: ["3 mol", "18 mol", "6 mol", "1.5 mol"],
+        ruOptions: ["3 моль", "18 моль", "6 моль", "1,5 моль"],
+        correctIndex: 0
+      },
+      {
+        id: 8, topic: "mol", task: 8,
+        en: {
+          text: `Two moles of gas received an amount of heat equal to 1700 J, while external forces performed work on the gas equal to 500 J. By how much did the internal energy of the gas increase?`,
+          info: `Task 8 checks knowledge of the first law of thermodynamics: ΔU = Q + A_external.`,
+          explanation: `ΔU = Q + A_external = 1700 + 500 = 2200 J. The "+" sign for the work of external forces, since the work is done ON the gas.`,
+          source: `Physics EGE-2026, Task 8`
+        },
+        ru: {
+          text: `Двум моль газа сообщили количество теплоты, равное 1700 Дж, при этом внешние силы совершили над газом работу, равную 500 Дж. На сколько увеличилась внутренняя энергия газа?`,
+          info: `Задание 8 проверяет знание первого закона термодинамики: ΔU = Q + A_внеш.`,
+          explanation: `ΔU = Q + A_внеш = 1700 + 500 = 2200 Дж. Знак «+» для работы внешних сил, так как работа совершается над газом.`,
+          source: `Физика ЕГЭ-2026, задание 8`
+        },
+        enOptions: ["2200 J", "1200 J", "1700 J", "500 J"],
+        ruOptions: ["2200 Дж", "1200 Дж", "1700 Дж", "500 Дж"],
+        correctIndex: 0
+      },
+      {
+        id: 9, topic: "mol", task: 9, figure: "fig9",
+        en: {
+          text: `A solid sample of substance was heated in a furnace. As it absorbed heat Q, the temperature of the sample t increased according to the graph.\n\nChoose all correct statements.\n1) Segment 2-3 corresponds to a process in which internal energy decreased\n2) Specific heat capacity in liquid state is greater than in solid state\n3) 327 J were required for complete melting\n4) Melting temperature is 961 °C\n5) Point 2 — the substance has completely melted`,
+          info: `Task 9 checks the ability to read phase transition graphs and apply heat formulas.`,
+          explanation: `1) Incorrect: in segment 2-3 temperature rises → internal energy increases. 2) Correct: c_solid ∝ 240/961 ≈ 0.25, c_liquid ∝ (696−327)/(2170−961) = 369/1209 ≈ 0.305. 3) Incorrect: Q_melt = 327 − 240 = 87 J. 4) Correct: plateau at 961 °C is the melting temperature. 5) Correct: point 2 is the end of melting, the substance has completely melted.`,
+          source: `Physics EGE-2026, Task 9`
+        },
+        ru: {
+          text: `Твёрдый образец вещества нагревали в печи. По мере поглощения количества теплоты Q температура образца t росла в соответствии с графиком.\n\nВыберите все верные утверждения.\n1) Участок 2-3 соответствует процессу, в котором внутренняя энергия уменьшалась\n2) Удельная теплоёмкость в жидком состоянии больше, чем в твёрдом\n3) Для полного плавления потребовалось 327 Дж\n4) Температура плавления равна 961 °C\n5) Точка 2 — вещество полностью расплавилось`,
+          info: `Задание 9 проверяет умение читать графики фазовых переходов и применять формулы теплоты.`,
+          explanation: `1) Неверно: на участке 2-3 температура растёт → внутренняя энергия увеличивается. 2) Верно: c_тв ∝ 240/961 ≈ 0,25, c_жидк ∝ (696−327)/(2170−961) = 369/1209 ≈ 0,305. 3) Неверно: Q_плав = 327 − 240 = 87 Дж. 4) Верно: плато при 961 °C — температура плавления. 5) Верно: точка 2 — конец плавления, вещество полностью расплавилось.`,
+          source: `Физика ЕГЭ-2026, задание 9`
+        },
+        enOptions: ["2, 4, 5", "1, 2", "4, 5", "1, 3"],
+        ruOptions: ["2, 4, 5", "1, 2", "4, 5", "1, 3"], // Numbers are universal
+        correctIndex: 0
+      },
+      {
+        id: 10, topic: "mol", task: 10, figure: "fig10",
+        en: {
+          text: `One mole of an ideal gas participates in process 1-2-3, the graph of which is shown in V—T coordinates. How do the gas pressure p change during process 1-2 and the concentration of molecules n during process 2-3?\n\nFor each quantity determine the nature of change:\n1) increases\n2) decreases\n3) does not change`,
+          info: `Task 10 checks the ability to analyze gas processes using a graph in V—T coordinates.`,
+          explanation: `From graph 1-2: V is constant, T increases → p increases (1). From graph 2-3: T is constant, V increases → n = N/V decreases (2).`,
+          source: `Physics EGE-2026, Task 10`
+        },
+        ru: {
+          text: `Один моль идеального газа участвует в процессе 1-2-3, график которого изображён в координатах V—T. Как изменяются давление газа p в ходе процесса 1-2 и концентрация молекул n в ходе процесса 2-3?\n\nДля каждой величины определите характер изменения:\n1) увеличивается\n2) уменьшается\n3) не изменяется`,
+          info: `Задание 10 проверяет умение анализировать газовые процессы по графику в координатах V—T.`,
+          explanation: `По графику 1-2: V постоянен, T растёт → p растёт (1). По графику 2-3: T постоянна, V растёт → n = N/V уменьшается (2).`,
+          source: `Физика ЕГЭ-2026, задание 10`
+        },
+        enOptions: ["1-2: 1; 2-3: 2", "1-2: 2; 2-3: 3", "1-2: 3; 2-3: 1", "1-2: 1; 2-3: 3"],
+        ruOptions: ["1-2: 1; 2-3: 2", "1-2: 2; 2-3: 3", "1-2: 3; 2-3: 1", "1-2: 1; 2-3: 3"], // Numbers are universal
+        correctIndex: 0
+      },
+      {
+        id: 11, topic: "elec", task: 11,
+        en: {
+          text: `The distance between two stationary point electric charges was increased by a factor of 3, while the magnitude of one of the charges was increased by a factor of 3. By what factor did the magnitude of the electrostatic interaction force between the charges decrease?`,
+          info: `Task 11 checks knowledge of Coulomb's law: F = kq₁q₂/r².`,
+          explanation: `Before: F₁ = kq₁q₂/r². After: F₂ = k(3q₁)q₂/(3r)² = 3kq₁q₂/(9r²) = F₁/3. Decreased by a factor of 3.`,
+          source: `Physics EGE-2026, Task 11`
+        },
+        ru: {
+          text: `Расстояние между двумя неподвижными точечными электрическими зарядами увеличили в 3 раза, при этом величину одного из зарядов увеличили в 3 раза. Во сколько раз уменьшился модуль сил электростатического взаимодействия между зарядами?`,
+          info: `Задание 11 проверяет знание закона Кулона: F = kq₁q₂/r².`,
+          explanation: `Было: F₁ = kq₁q₂/r². Стало: F₂ = k(3q₁)q₂/(3r)² = 3kq₁q₂/(9r²) = F₁/3. Уменьшилась в 3 раза.`,
+          source: `Физика ЕГЭ-2026, задание 11`
+        },
+        enOptions: ["by 3 times", "by 9 times", "by 27 times", "by 6 times"],
+        ruOptions: ["в 3 раза", "в 9 раз", "в 27 раз", "в 6 раз"],
+        correctIndex: 0
+      },
+      {
+        id: 12, topic: "elec", task: 12, figure: "fig12",
+        en: {
+          text: `The figure shows the graph of the dependence of the current I flowing in a coil with inductance 4 mH on time t. Determine the magnitude of the EMF of self-induction in the time interval from 1 to 3 s.`,
+          info: `Task 12 checks knowledge of the phenomenon of self-induction: ε = −L·ΔI/Δt.`,
+          explanation: `L = 4 mH = 0.004 H. In the segment from 1 to 3 s, the current decreases from 3 A to 1 A. ΔI = 1 − 3 = −2 A, |ΔI| = 2 A. |ε| = L·|ΔI|/Δt = 0.004 × 2 / 2 = 0.004 V = 4 mV.`,
+          source: `Physics EGE-2026, Task 12`
+        },
+        ru: {
+          text: `На рисунке показан график зависимости силы тока I, протекающего в катушке с индуктивностью 4 мГн, от времени t. Определите модуль ЭДС самоиндукции в промежутке времени от 1 до 3 с.`,
+          info: `Задание 12 проверяет знание явления самоиндукции: ε = −L·ΔI/Δt.`,
+          explanation: `L = 4 мГн = 0,004 Гн. На участке от 1 до 3 с ток уменьшается с 3 А до 1 А. ΔI = 1 − 3 = −2 А, |ΔI| = 2 А. |ε| = L·|ΔI|/Δt = 0,004 × 2 / 2 = 0,004 В = 4 мВ.`,
+          source: `Физика ЕГЭ-2026, задание 12`
+        },
+        enOptions: ["4 mV", "6 mV", "3 mV", "2 mV"],
+        ruOptions: ["4 мВ", "6 мВ", "3 мВ", "2 мВ"],
+        correctIndex: 0
+      },
+      {
+        id: 13, topic: "elec", task: 13, figure: "fig13",
+        en: {
+          text: `Which of arrows 1-4 is the image of object AB in a thin lens with focal length F?`,
+          info: `Task 13 checks the ability to construct images in a thin lens.`,
+          explanation: `Object AB is located beyond double focus. Image — real, inverted, reduced, between F and 2F. According to the drawing, this is arrow 3.`,
+          source: `Physics EGE-2026, Task 13`
+        },
+        ru: {
+          text: `Какая из стрелок 1-4 является изображением предмета AB в тонкой линзе с фокусным расстоянием F?`,
+          info: `Задание 13 проверяет умение строить изображения в тонкой линзе.`,
+          explanation: `Предмет AB расположен за двойным фокусом. Изображение — действительное, перевёрнутое, уменьшенное, между F и 2F. По рисунку это стрелка 3.`,
+          source: `Физика ЕГЭ-2026, задание 13`
+        },
+        enOptions: ["Arrow 3", "Arrow 1", "Arrow 2", "Arrow 4"],
+        ruOptions: ["Стрелка 3", "Стрелка 1", "Стрелка 2", "Стрелка 4"],
+        correctIndex: 0
+      },
+      {
+        id: 14, topic: "elec", task: 14,
+        en: {
+          text: `Two parallel metal plates of large size are connected to a constant voltage source. Without disconnecting the plates from the source, they are brought closer together, reducing the distance between them by half. Choose all correct statements.\n1) Energy of electric field increased by 4 times\n2) Magnitude of charge on plates increased by 2 times\n3) Voltage across plates decreased by 4 times\n4) Capacitance of capacitor increased by 2 times\n5) Field intensity increased by 2 times`,
+          info: `Task 14 checks knowledge of capacitor properties at constant voltage.`,
+          explanation: `U does not change (source connected). C = ε₀S/d → at d/2 capacitance grows by 2 times (4 is correct). q = CU → charge grows by 2 times (2 is correct). E = U/d → intensity grows by 2 times (5 is correct). Energy W = CU²/2 grows by 2 times, not 4 (1 is incorrect).`,
+          source: `Physics EGE-2026, Task 14`
+        },
+        ru: {
+          text: `Две параллельные металлические пластины больших размеров подключены к источнику постоянного напряжения. Не отключая пластины от источника, их сближают, уменьшая расстояние между ними в 2 раза. Выберите все верные утверждения.\n1) Энергия электрического поля увеличилась в 4 раза\n2) Модуль заряда обкладок увеличился в 2 раза\n3) Напряжение между обкладками уменьшилось в 4 раза\n4) Электроёмкость конденсатора увеличилась в 2 раза\n5) Напряжённость поля увеличилась в 2 раза`,
+          info: `Задание 14 проверяет знание свойств конденсатора при постоянном напряжении.`,
+          explanation: `U не меняется (источник подключён). C = ε₀S/d → при d/2 ёмкость растёт в 2 раза (4 — верно). q = CU → заряд растёт в 2 раза (2 — верно). E = U/d → напряжённость растёт в 2 раза (5 — верно). Энергия W = CU²/2 растёт в 2 раза, не в 4 (1 — неверно).`,
+          source: `Физика ЕГЭ-2026, задание 14`
+        },
+        enOptions: ["2, 4, 5", "1, 3", "3, 5", "1, 5"],
+        ruOptions: ["2, 4, 5", "1, 3", "3, 5", "1, 5"], // Numbers are universal
+        correctIndex: 0
+      },
+      {
+        id: 15, topic: "elec", task: 15,
+        en: {
+          text: `An alpha particle moves in a circle in a uniform magnetic field under the action of the Lorentz force. How will the magnitude of the Lorentz force and the frequency of revolution change if a proton moves in the field of this magnet along a circle of the same radius?\n\n1) will increase\n2) will decrease\n3) will not change`,
+          info: `Task 15 checks knowledge of the Lorentz force and motion of charged particles in a magnetic field.`,
+          explanation: `F_Lorentz = q²B²R/m. For alpha particle: 4/4 = 1. For proton: 1/1 = 1. Force will not change (3). Frequency ν = qB/(2πm). For alpha particle: 2/4 = 0.5. For proton: 1/1 = 1. Frequency will increase (1).`,
+          source: `Physics EGE-2026, Task 15`
+        },
+        ru: {
+          text: `В однородном магнитном поле под действием силы Лоренца движется по окружности α-частица. Как изменятся модуль силы Лоренца и частота обращения, если в поле этого магнита по окружности такого же радиуса будет двигаться протон?\n\n1) увеличится\n2) уменьшится\n3) не изменится`,
+          info: `Задание 15 проверяет знание силы Лоренца и движения заряженных частиц в магнитном поле.`,
+          explanation: `F_Л = q²B²R/m. Для α-частицы: 4/4 = 1. Для протона: 1/1 = 1. Сила не изменится (3). Частота ν = qB/(2πm). Для α-частицы: 2/4 = 0,5. Для протона: 1/1 = 1. Частота увеличится (1).`,
+          source: `Физика ЕГЭ-2026, задание 15`
+        },
+        enOptions: ["Force: 3; Frequency: 1", "Force: 2; Frequency: 2", "Force: 1; Frequency: 1", "Force: 3; Frequency: 3"],
+        ruOptions: ["Сила: 3; Частота: 1", "Сила: 2; Частота: 2", "Сила: 1; Частота: 1", "Сила: 3; Частота: 3"], // Numbers are universal
+        correctIndex: 0
+      },
+      {
+        id: 16, topic: "elec", task: 16,
+        en: {
+          text: `The half-life of magnesium isotope ²⁸₁₂Mg is 21 h. Initially, the sample contained 0.8 micromoles of this isotope. How much substance of this isotope will remain after 42 h?`,
+          info: `Task 16 checks knowledge of the law of radioactive decay.`,
+          explanation: `t = 42 h = 2·T. N = N₀/2² = 0.8/4 = 0.2 micromoles.`,
+          source: `Physics EGE-2026, Task 16`
+        },
+        ru: {
+          text: `Период полураспада изотопа магния ²⁸₁₂Mg равен 21 ч. Изначально образец содержал 0,8 мкмоль этого изотопа. Какое количество вещества этого изотопа останется через 42 ч?`,
+          info: `Задание 16 проверяет знание закона радиоактивного распада.`,
+          explanation: `t = 42 ч = 2·T. N = N₀/2² = 0,8/4 = 0,2 мкмоль.`,
+          source: `Физика ЕГЭ-2026, задание 16`
+        },
+        enOptions: ["0.2 micromoles", "0.4 micromoles", "0.6 micromoles", "0.8 micromoles"],
+        ruOptions: ["0,2 мкмоль", "0,4 мкмоль", "0,6 мкмоль", "0,8 мкмоль"],
+        correctIndex: 0
+      },
+      {
+        id: 17, topic: "elec", task: 17, figure: "fig17",
+        en: {
+          text: `The figure shows a simplified diagram of the lower energy levels of an atom. Arrows indicate transitions.\n\nEstablish correspondence.\nA) absorption of light of greatest wavelength\nB) emission of light of least frequency\n\nPHOTON ENERGY\n1) E₁ − E₀\n2) E₂ − E₁\n3) E₃ − E₀\n4) E₄ − E₀`,
+          info: `Task 17 checks knowledge of energy transitions in an atom: E = hν = hc/λ. Greatest wavelength ↔ least energy. Least frequency ↔ least energy.`,
+          explanation: `Greatest wavelength — least photon energy: E₁ − E₀ (1). Least frequency — also least energy: E₂ − E₁ (2).`,
+          source: `Physics EGE-2026, Task 17`
+        },
+        ru: {
+          text: `На рисунке изображена упрощённая диаграмма нижних энергетических уровней атома. Стрелками отмечены переходы.\n\nУстановите соответствие.\nА) поглощение света наибольшей длины волны\nБ) испускание света наименьшей частоты\n\nЭНЕРГИЯ ФОТОНА\n1) E₁ − E₀\n2) E₂ − E₁\n3) E₃ − E₀\n4) E₄ − E₀`,
+          info: `Задание 17 проверяет знание энергетических переходов в атоме: E = hν = hc/λ. Наибольшая длина волны ↔ наименьшая энергия. Наименьшая частота ↔ наименьшая энергия.`,
+          explanation: `Наибольшая длина волны — наименьшая энергия фотона: E₁ − E₀ (1). Наименьшая частота — тоже наименьшая энергия: E₂ − E₁ (2).`,
+          source: `Физика ЕГЭ-2026, задание 17`
+        },
+        enOptions: ["A-1, B-2", "A-2, B-1", "A-3, B-4", "A-4, B-3"],
+        ruOptions: ["А-1, Б-2", "А-2, Б-1", "А-3, Б-4", "А-4, Б-3"],
+        correctIndex: 0
+      },
+      {
+        id: 18, topic: "elec", task: 18,
+        en: {
+          text: `Choose all correct statements about physical phenomena.\n1) Kinetic energy of a body depends on its mass and height\n2) Specific heat of vaporization shows how much heat is needed to heat a liquid of mass 1 kg to boiling\n3) Magnitude of electrostatic interaction forces of two stationary point charges in vacuum is inversely proportional to square of distance between them\n4) Speed of ultraviolet in vacuum is less than speed of light\n5) During electronic beta-decay, mass number of nucleus remains unchanged`,
+          info: `Task 18 checks knowledge of general physical regularities and definitions.`,
+          explanation: `3) Coulomb's law: F ∝ 1/r² — correct. 5) During β⁻-decay mass number doesn't change — correct. 1) Kinetic energy depends on mass and speed, not height — incorrect. 2) Specific heat of vaporization is not heating, but vaporization — incorrect. 4) Ultraviolet is electromagnetic wave, in vacuum speed equals c — incorrect.`,
+          source: `Physics EGE-2026, Task 18`
+        },
+        ru: {
+          text: `Выберите все верные утверждения о физических явлениях.\n1) Кинетическая энергия тела зависит от его массы и высоты\n2) Удельная теплота парообразования показывает, сколько нужно теплоты для нагревания жидкости массой 1 кг до кипения\n3) Модуль сил электростатического взаимодействия двух неподвижных точечных зарядов в вакууме обратно пропорционален квадрату расстояния между ними\n4) Скорость ультрафиолета в вакууме меньше скорости света\n5) При электронном β-распаде массовое число ядра остаётся неизменным`,
+          info: `Задание 18 проверяет знание общих физических закономерностей и определений.`,
+          explanation: `3) Закон Кулона: F ∝ 1/r² — верно. 5) При β⁻-распаде массовое число не меняется — верно. 1) Кинетическая энергия зависит от массы и скорости, не от высоты — неверно. 2) Удельная теплота парообразования — не нагревание, а парообразование — неверно. 4) Ультрафиолет — электромагнитная волна, в вакууме скорость равна c — неверно.`,
+          source: `Физика ЕГЭ-2026, задание 18`
+        },
+        enOptions: ["3, 5", "1, 2", "2, 4", "1, 5"],
+        ruOptions: ["3, 5", "1, 2", "2, 4", "1, 5"], // Numbers are universal
+        correctIndex: 0
+      },
+      {
+        id: 19, topic: "elec", task: 19, figure: "fig19",
+        en: {
+          text: `Write down the ammeter readings if the absolute error of direct measurement of current strength is equal to the scale division price of the ammeter.`,
+          info: `Task 19 checks the ability to take readings from an analog instrument and consider the error.`,
+          explanation: `On the ammeter scale: needle stands at 1.4 A (scale division price 0.2 A). Error equals scale division price — 0.2 A. Answer: (1.4 ± 0.2) A.`,
+          source: `Physics EGE-2026, Task 19`
+        },
+        ru: {
+          text: `Запишите показания амперметра, если абсолютная погрешность прямого измерения силы тока равна цене деления амперметра.`,
+          info: `Задание 19 проверяет умение снимать показания с аналогового прибора и учитывать погрешность.`,
+          explanation: `По шкале амперметра: стрелка стоит на 1,4 А (цена деления 0,2 А). Погрешность равна цене деления — 0,2 А. Ответ: (1,4 ± 0,2) А.`,
+          source: `Физика ЕГЭ-2026, задание 19`
+        },
+        enOptions: ["1.4 ± 0.2 A", "1.4 ± 0.1 A", "1.2 ± 0.2 A", "1.0 ± 0.2 A"],
+        ruOptions: ["1,4 ± 0,2 А", "1,4 ± 0,1 А", "1,2 ± 0,2 А", "1,0 ± 0,2 А"],
+        correctIndex: 0
+      },
+      {
+        id: 20, topic: "mol", task: 20,
+        en: {
+          text: `A student needs to experimentally discover the dependence of gas pressure in a vessel on the absolute temperature of the gas. He has five different vessels with manometers. Vessels are filled with equal masses of different gases at different temperatures.\n\nTable:\n1) V=5 l, T=290 K, helium\n2) V=3 l, T=290 K, helium\n3) V=3 l, T=290 K, nitrogen\n4) V=5 l, T=320 K, nitrogen\n5) V=5 l, T=320 K, helium\n\nWhich two vessels should be taken?`,
+          info: `Task 20 checks the ability to plan a physical experiment. To investigate dependence p(T), only T must be changed, keeping V and gas type unchanged.`,
+          explanation: `Need to change only T, keeping V and gas identical. Suitable vessels are 1 (He, 5 l, 290 K) and 5 (He, 5 l, 320 K). Volume is identical (5 l), gas is identical (helium), temperature is different.`,
+          source: `Physics EGE-2026, Task 20`
+        },
+        ru: {
+          text: `Ученику необходимо на опыте обнаружить зависимость давления газа, находящегося в сосуде, от абсолютной температуры газа. У него имеется пять различных сосудов с манометрами. Сосуды наполнены равными массами различных газов при различных температурах.\n\nТаблица:\n1) V=5 л, T=290 К, гелий\n2) V=3 л, T=290 К, гелий\n3) V=3 л, T=290 К, азот\n4) V=5 л, T=320 К, азот\n5) V=5 л, T=320 К, гелий\n\nКакие два сосуда необходимо взять?`,
+          info: `Задание 20 проверяет умение планировать физический эксперимент. Для исследования зависимости p(T) нужно менять только T, оставив неизменными V и род газа.`,
+          explanation: `Нужно менять только T, оставив V и газ одинаковыми. Подходят сосуды 1 (He, 5 л, 290 К) и 5 (He, 5 л, 320 К). Объём одинаковый (5 л), газ одинаковый (гелий), температура разная.`,
+          source: `Физика ЕГЭ-2026, задание 20`
+        },
+        enOptions: ["1, 5", "2, 5", "1, 4", "3, 4"],
+        ruOptions: ["1, 5", "2, 5", "1, 4", "3, 4"], // Numbers are universal
+        correctIndex: 0
+      }
+    ];
+
+    const part2TasksRaw = [
+      {
+        n: 21, figure: "fig21",
+        en: {
+          title: "Qualitative Problem (Molecular Physics / Electrodynamics)",
+          text: "One mole of rarefied helium participates in cyclic process 1–2–3–1, the graph of which is shown in V—T coordinates. Relying on laws of molecular physics and thermodynamics, compare the work of gas in process 2–3 and work of external forces in process 3–1. Construct cycle graph in p—V coordinates.",
+          note: "Analysis from V—T graph: process 1–2 is isochoric heating (V = V₀, T grows from T₀ to 2T₀), process 2–3 is isothermal expansion (T = 2T₀, V grows from V₀ to 3V₀), process 3–1 is straight line through origin (V/T = const → p = const, isobaric compression).\n\nIn p—V coordinates: 1–2 vertical up, 2–3 hyperbola right, 3–1 horizontal left.\n\nWork of gas in 2–3: A₂₋₃ = νRT·ln(V₃/V₂) = 1·R·2T₀·ln(3) > 0.\nWork of external forces in 3–1: A_ext = p·(V₃ − V₁) = p₃·(3V₀ − V₀) = 2p₃V₀ = 2νRT₀ = 2RT₀ > 0.\n\nComparison: A₂₋₃ = 2RT₀·ln3 ≈ 2.2·RT₀; A_ext = 2RT₀. Thus, A₂₋₃ > A_ext."
+        },
+        ru: {
+          title: "Качественная задача (молекулярная физика / электродинамика)",
+          text: "Один моль разреженного гелия участвует в циклическом процессе 1–2–3–1, график которого изображён в координатах V—T. Опираясь на законы молекулярной физики и термодинамики, сравните работу газа в процессе 2–3 и работу внешних сил в процессе 3–1. Постройте график цикла в координатах p—V.",
+          note: "Анализ по графику V—T: процесс 1–2 — изохорный нагрев (V = V₀, T растёт от T₀ до 2T₀), процесс 2–3 — изотермическое расширение (T = 2T₀, V растёт от V₀ до 3V₀), процесс 3–1 — прямая через начало координат (V/T = const → p = const, изобарное сжатие).\n\nВ координатах p—V: 1–2 — вертикаль вверх, 2–3 — гипербола вправо, 3–1 — горизонталь влево.\n\nРабота газа в 2–3: A₂₋₃ = νRT·ln(V₃/V₂) = 1·R·2T₀·ln(3) > 0.\nРабота внешних сил в 3–1: A_внеш = p·(V₃ − V₁) = p₃·(3V₀ − V₀) = 2p₃V₀ = 2νRT₀ = 2RT₀ > 0.\n\nСравнение: A₂₋₃ = 2RT₀·ln3 ≈ 2,2·RT₀; A_внеш = 2RT₀. Значит, A₂₋₃ > A_внеш."
+        }
+      },
+      {
+        n: 22,
+        en: {
+          title: "Calculation Problem in Mechanics",
+          text: "Sledges with hunter stand on very smooth ice of lake. Hunter shoots from rifle in horizontal direction. Mass of shot charge is 0.03 kg. Speed of shot at firing is 360 m/s. Total mass of sledges and hunter with rifle is 120 kg. What is magnitude of speed of sledges with hunter immediately after firing?",
+          note: "Law of conservation of momentum: 0 = m_shot·v_shot + M·V. V = −m_shot·v_shot/M = −(0.03·360)/120 = −0.09 m/s. Magnitude of speed is 0.09 m/s."
+        },
+        ru: {
+          title: "Расчётная задача по механике",
+          text: "Сани с охотником стоят на очень гладком льду озера. Охотник стреляет из ружья в горизонтальном направлении. Масса заряда дроби 0,03 кг. Скорость дроби при выстреле 360 м/с. Общая масса саней и охотника с ружьём 120 кг. Какова по модулю скорость саней с охотником сразу после выстрела?",
+          note: "Закон сохранения импульса: 0 = m_др·v_др + M·V. V = −m_др·v_др/M = −(0,03·360)/120 = −0,09 м/с. Модуль скорости 0,09 м/с."
+        }
+      },
+      {
+        n: 23,
+        en: {
+          title: "Electromagnetism",
+          text: "Straight uniform conductor of constant cross-section is suspended horizontally on two non-conducting threads in uniform magnetic field with induction B = 10 mT. Vector of magnetic induction is horizontal and perpendicular to conductor. What current strength should be passed through conductor so that tension of each thread halves? Ratio of mass of conductor to its length m/l = 0.01 kg/m.",
+          note: "Without current: 2T = mg. After turning on current: 2T' + F_A = mg, T' = T/2 → F_A = mg/2 = (m/l)·L·g/2. F_A = B·I·L. Then B·I·L = (m/l)·L·g/2 → I = (m/l)·g/(2B) = 0.01·10/(2·0.01) = 5 A."
+        },
+        ru: {
+          title: "Электромагнетизм",
+          text: "Прямолинейный однородный проводник постоянного сечения подвешен горизонтально на двух непроводящих нитях в однородном магнитном поле с индукцией B = 10 мТл. Вектор магнитной индукции горизонтален и перпендикулярен проводнику. Ток какой силы следует пропустить по проводнику, чтобы сила натяжения каждой из нитей уменьшилась вдвое? Отношение массы проводника к его длине m/l = 0,01 кг/м.",
+          note: "В отсутствие тока: 2T = mg. После включения тока: 2T' + F_A = mg, T' = T/2 → F_A = mg/2 = (m/l)·L·g/2. F_A = B·I·L. Тогда B·I·L = (m/l)·L·g/2 → I = (m/l)·g/(2B) = 0,01·10/(2·0,01) = 5 А."
+        }
+      },
+      {
+        n: 24,
+        en: {
+          title: "Molecular Physics / Thermodynamics",
+          text: "Meteorological probe of total mass 20 kg is held on Earth surface by force equal in magnitude to 1 kN and directed downwards. Then probe is released, it rises upwards and stays at altitude where its volume doubles. Temperature measured by probe at this altitude is −43 °C. Determine pressure at this altitude if on Earth surface pressure is 10⁵ Pa and temperature is +17 °C.",
+          note: "On surface: F_A1 = Mg + F = 20·10 + 1000 = 1200 N (Archimedes force balances weight and holding force). At altitude probe is in equilibrium: F_A2 = Mg = 200 N. Given V₂ = 2V₁.\n\nRatio of air densities: ρ₂/ρ₁ = (F_A2/V₂)/(F_A1/V₁) = (200·V₁)/(1200·2V₁) = 1/12.\n\nFor air as ideal gas ρ ∝ p/T. Then p₂ = p₁·(ρ₂/ρ₁)·(T₂/T₁).\nT₁ = 17 + 273 = 290 K, T₂ = −43 + 273 = 230 K.\np₂ = 10⁵·(1/12)·(230/290) ≈ 6.6 kPa.\n\nAnswer: ≈ 6.6 kPa."
+        },
+        ru: {
+          title: "Молекулярная физика / термодинамика",
+          text: "Метеорологический зонд общей массой 20 кг удерживают на поверхности Земли силой, равной по модулю 1 кН и направленной вниз. Затем зонд отпускают, он поднимается вверх и остаётся на той высоте, где его объём увеличивается в 2 раза. Температура, измеренная зондом на этой высоте, равна −43 °C. Определите давление на этой высоте, если на поверхности Земли давление равно 10⁵ Па, а температура равна +17 °C.",
+          note: "На поверхности: F_A1 = Mg + F = 20·10 + 1000 = 1200 Н (сила Архимеда уравновешивает вес и удерживающую силу). На высоте зонд в равновесии: F_A2 = Mg = 200 Н. По условию V₂ = 2V₁.\n\nОтношение плотностей воздуха: ρ₂/ρ₁ = (F_A2/V₂)/(F_A1/V₁) = (200·V₁)/(1200·2V₁) = 1/12.\n\nДля воздуха как идеального газа ρ ∝ p/T. Тогда p₂ = p₁·(ρ₂/ρ₁)·(T₂/T₁).\nT₁ = 17 + 273 = 290 К, T₂ = −43 + 273 = 230 К.\np₂ = 10⁵·(1/12)·(230/290) ≈ 6,6 кПа.\n\nОтвет: ≈ 6,6 кПа."
+        }
+      },
+      {
+        n: 25,
+        en: {
+          title: "Geometric Optics",
+          text: "Point light source is located at one-and-a-half focal distances from thin diverging lens with optical power −10 diopters on its main optical axis. Lens is inserted in opaque mount with hole radius 5 cm. What is diameter of light spot on screen located on other side of lens at distance 10 cm from it? Make drawing indicating ray paths.",
+          note: "D = −10 diopters → F = 1/D = −0.1 m = −10 cm. d = 1.5·|F| = 15 cm.\n\nThin lens formula: 1/F = 1/d + 1/f. 1/(−10) = 1/15 + 1/f → 1/f = −1/10 − 1/15 = −1/6 → f = −6 cm. Virtual image is located 6 cm before lens on source side.\n\nScreen at distance L = 10 cm behind lens. Distance from virtual image to screen: s = 6 + 10 = 16 cm.\n\nBy similarity of triangles radius of spot: R = r·s/|f| = 5·16/6 ≈ 13.3 cm.\nSpot diameter: D_spot = 2R ≈ 26.7 cm ≈ 27 cm.\n\nAnswer: ≈ 27 cm."
+        },
+        ru: {
+          title: "Геометрическая оптика",
+          text: "На полуторном фокусном расстоянии от тонкой рассеивающей линзы с оптической силой −10 дптр на её главной оптической оси расположен точечный источник света. Линза вставлена в непрозрачную оправу с радиусом отверстия 5 см. Каков диаметр светлого пятна на экране, расположенном с другой стороны от линзы на расстоянии 10 см от неё? Сделайте рисунок с указанием хода лучей.",
+          note: "D = −10 дптр → F = 1/D = −0,1 м = −10 см. d = 1,5·|F| = 15 см.\n\nФормула тонкой линзы: 1/F = 1/d + 1/f. 1/(−10) = 1/15 + 1/f → 1/f = −1/10 − 1/15 = −1/6 → f = −6 см. Мнимое изображение находится на 6 см перед линзой со стороны источника.\n\nЭкран на расстоянии L = 10 см за линзой. Расстояние от мнимого изображения до экрана: s = 6 + 10 = 16 см.\n\nПо подобию треугольников радиус пятна: R = r·s/|f| = 5·16/6 ≈ 13,3 см.\nДиаметр пятна: D_пятна = 2R ≈ 26,7 см ≈ 27 см.\n\nОтвет: ≈ 27 см."
+        }
+      },
+      {
+        n: 26, figure: "fig26",
+        en: {
+          title: "Mechanics (Dynamics, Pulley, Spring)",
+          text: "Bar of mass M = 600 g is connected by weightless and inextensible thread thrown over smooth weightless pulley to load of mass m = 200 g. Second such load is hung on this load on light spring. Length of unstretched spring l = 12 cm, friction coefficient of bar on table surface μ = 0.2. Determine stiffness k of spring if during motion of loads length of spring is constant and equal to 14 cm.",
+          note: "All bodies move with same acceleration a. Loads move down, bar — towards pulley.\n\nEquations in projections (direction of loads moving down is positive):\n• lower load: mg − kΔx = ma\n• upper load: mg + kΔx − T = ma\n• bar: T − μMg = Ma\n\nAdding: 2mg − μMg = (M + 2m)a → a = (2·0.2·10 − 0.2·0.6·10)/(0.6 + 0.4) = (4 − 1.2)/1 = 2.8 m/s².\n\nFrom equation of lower load: kΔx = m(g − a) = 0.2·(10 − 2.8) = 0.2·7.2 = 1.44 N.\nΔx = 14 − 12 = 2 cm = 0.02 m.\nk = 1.44/0.02 = 72 N/m.\n\nAnswer: 72 N/m."
+        },
+        ru: {
+          title: "Механика (динамика, блок, пружина)",
+          text: "Брусок массой M = 600 г соединён невесомой и нерастяжимой нитью, перекинутой через гладкий невесомый блок, с грузом массой m = 200 г. К этому грузу на лёгкой пружине подвешен второй такой же груз. Длина нерастянутой пружины l = 12 см, коэффициент трения бруска о поверхность стола μ = 0.2. Определите жёсткость k пружины, если при движении грузов длина пружины постоянна и равна 14 см.",
+          note: "Все тела движутся с одинаковым ускорением a. Грузы движутся вниз, брусок — к блоку.\n\nУравнения в проекциях (направление движения грузов вниз положительное):\n• нижний груз: mg − kΔx = ma\n• верхний груз: mg + kΔx − T = ma\n• брусок: T − μMg = Ma\n\nСкладывая: 2mg − μMg = (M + 2m)a → a = (2·0,2·10 − 0,2·0,6·10)/(0,6 + 0,4) = (4 − 1,2)/1 = 2,8 м/с².\n\nИз уравнения нижнего груза: kΔx = m(g − a) = 0,2·(10 − 2,8) = 0,2·7,2 = 1,44 Н.\nΔx = 14 − 12 = 2 см = 0,02 м.\nk = 1,44/0,02 = 72 Н/м.\n\nОтвет: 72 Н/м."
+        }
+      }
+    ];
+
+    // Process Quiz Data for current language
+    let quiz = [];
+    let part2Tasks = [];
+
+    function prepareData() {
+      quiz = quizRaw.map(q => ({
+        ...q,
+        text: q[currentLang].text,
+        info: q[currentLang].info,
+        explanation: q[currentLang].explanation,
+        source: q[currentLang].source,
+        options: currentLang === 'ru' ? [...q.ruOptions] : [...q.enOptions],
+        correct: q.correctIndex 
+      }));
+      
+      part2Tasks = part2TasksRaw.map(t => ({
+        n: t.n,
+        figure: t.figure,
+        title: t[currentLang].title,
+        text: t[currentLang].text,
+        note: t[currentLang].note
+      }));
+    }
+
+    // ============================================================
+    // LOGIC FUNCTIONS
+    // ============================================================
+
+    const QUIZ_ORIGINAL_VALUES = quizRaw.map(function (q) {
+      return {
+        correctValueRu: q.ruOptions[q.correctIndex],
+        correctValueEn: q.enOptions[q.correctIndex]
+      };
+    });
+
+    function seededShuffle(arr, seedNum) {
+      const a = arr.slice();
+      let s = seedNum || 1;
+      const rand = function () {
+        s = (s * 9301 + 49297) % 233280;
+        return s / 233280;
+      };
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(rand() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    }
+
+    function shuffleOptionsOnce() {
+      const seed = quizRaw.map(function () {
+        return Math.floor(Math.random() * 1000000) + 1;
+      });
+
+      quiz.forEach(function (q, i) {
+        const correctVal = currentLang === 'ru' 
+           ? QUIZ_ORIGINAL_VALUES[i].correctValueRu 
+           : QUIZ_ORIGINAL_VALUES[i].correctValueEn;
+
+        const shuffled = seededShuffle(q.options, seed[i]);
+        q.options = shuffled;
+        q.correct = shuffled.indexOf(correctVal);
+      });
+    }
+
+    let savedAnswers = {};
+    let manualNotes = {};
+    let checklistState = {};
+    let currentFilter = "all";
+
+    function applyUIText() {
+      const L = I18N[currentLang];
+      document.title = L.docTitle;
+      document.documentElement.lang = currentLang;
+
+      const meta = document.querySelector('meta[name="description"]');
+      if (meta) meta.setAttribute("content", L.metaDesc);
+
+      document.querySelectorAll("[data-i18n]").forEach(function (el) {
+        const key = el.dataset.i18n;
+        if (L[key] != null) el.innerHTML = L[key];
+      });
+      
+      updateDynamicLabels();
+    }
+
+    function updateDynamicLabels() {}
+
+    function renderCard(card, index, containerId) {
+      const container = document.getElementById(containerId);
+      const div = document.createElement('div');
+      div.className = 'card ' + (card.cls || '');
+      
+      let inner = `<span class="tag ${card.tagCls || ''}">${loc(card.tagKey)}</span>`;
+      inner += `<h3>${loc(card.titleKey)}</h3>`;
+      
+      if (card.listKey) {
+        const list = I18N[currentLang][card.listKey];
+        inner += `<ul class="mini-list">${list.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>`;
+      } else if (card.textKey) {
+        inner += `<p>${escapeHtml(I18N[currentLang][card.textKey])}</p>`;
+      }
+      
+      div.innerHTML = inner;
+      container.appendChild(div);
+    }
+
+    function renderStaticSections() {
+      document.getElementById("structureGrid").innerHTML = '';
+      document.getElementById("changesGrid").innerHTML = '';
+      document.getElementById("criteriaGrid").innerHTML = '';
+      
+      structureCardsData.forEach(c => renderCard(c, 0, "structureGrid"));
+      changesCardsData.forEach(c => renderCard(c, 0, "changesGrid"));
+      criteriaCardsData.forEach(c => renderCard(c, 0, "criteriaGrid"));
+    }
+
+    function renderChecklist() {
+      const ul = document.getElementById("checklistUl");
+      ul.innerHTML = checklistItemsData.map(function (item) {
+        const checked = checklistState[item.key] ? "checked" : "";
+        const doneClass = checklistState[item.key] ? "done" : "";
+        const labelText = currentLang === "ru" ? item.labelRu : item.labelEn;
+        return `
+          <li class="check-item ${doneClass}">
+            <input type="checkbox" id="${item.key}" data-key="${item.key}" ${checked} />
+            <label for="${item.key}">${escapeHtml(labelText)}</label>
+          </li>
+        `;
+      }).join("");
+    }
+
+    function renderPlan() {
+      const L = I18N[currentLang];
+      document.getElementById("planGrid").innerHTML = planDaysData.map(function (d) {
+        const text = currentLang === "ru" ? d.ru : d.en;
+        return `
+          <div class="day ${d.critical ? "critical" : ""}">
+            <b>${escapeHtml(L.dayPrefix)} ${d.day}</b>
+            ${escapeHtml(text)}
+          </div>
+        `;
+      }).join("");
+    }
+
+    function topicLabel(topic) {
+      if (topic === "mech") return loc("topicMech");
+      if (topic === "mol") return loc("topicMol");
+      return loc("topicElec");
+    }
+
+    function topicClass(topic) {
+      if (topic === "mech") return "q-number mech";
+      if (topic === "mol") return "q-number mol";
+      return "q-number elec";
+    }
+
+    function setFilter(filter, btn) {
+      currentFilter = filter;
+      document.querySelectorAll(".filter-btn").forEach(function (b) {
+        b.classList.remove("active");
+      });
+      if (btn) btn.classList.add("active");
+      applyFilter();
+    }
+
+    function applyFilter() {
+      quiz.forEach(function (q) {
+        const block = document.getElementById("q" + q.id);
+        if (!block) return;
+        let show = true;
+        if (currentFilter !== "all") show = q.topic === currentFilter;
+        block.style.display = show ? "" : "none";
+      });
+    }
+
+    function updateFilterLabels() {
+      const mechCount = quiz.filter(function (q) { return q.topic === "mech"; }).length;
+      const molCount = quiz.filter(function (q) { return q.topic === "mol"; }).length;
+      const elecCount = quiz.filter(function (q) { return q.topic === "elec"; }).length;
+
+      document.getElementById("filterAll").textContent = `${loc("filterAll")} (${quiz.length})`;
+      document.getElementById("filterMech").textContent = `${loc("filterMech")} (${mechCount})`;
+      document.getElementById("filterMol").textContent = `${loc("filterMol")} (${molCount})`;
+      document.getElementById("filterElec").textContent = `${loc("filterElec")} (${elecCount})`;
+    }
+
+    function renderAllQuestions() {
+      const container = document.getElementById("quizContainer");
+      container.innerHTML = "";
+
+      quiz.forEach(function (q) {
+        const block = document.createElement("div");
+        block.className = "question-block";
+        block.id = "q" + q.id;
+
+        let optionsHtml = "";
+        q.options.forEach(function (opt, idx) {
+          optionsHtml += `<button class="option" data-q="${q.id}" data-idx="${idx}" data-value="${escapeHtml(opt)}" onclick="handleAnswer(${q.id}, ${idx})">${escapeHtml(opt)}</button>`;
+        });
+
+        block.innerHTML = `
+          <div class="${topicClass(q.topic)}">${escapeHtml(topicLabel(q.topic))}, ${loc("p2Task")} ${q.task}</div>
+
+          <div class="q-part">
+            <span class="q-part-label">${escapeHtml(loc("qLabel1"))}</span>
+            <div class="q-text">${escapeHtml(q.text)}</div>
+            ${q.figure ? getFigureSvg(q.figure) : ''}
+          </div>
+
+          <div class="q-info">
+            <span class="q-part-label" style="color:#d8ccff;">${escapeHtml(loc("qLabel2"))}</span>
+            <p style="margin:0;">${escapeHtml(q.info)}</p>
+          </div>
+
+          <div class="q-part">
+            <span class="q-trainer-label">${escapeHtml(loc("qLabel3"))}</span>
+            <div class="options" id="options-${q.id}">${optionsHtml}</div>
+          </div>
+
+          <div id="result-${q.id}"></div>
+        `;
+
+        container.appendChild(block);
+      });
+
+      quiz.forEach(function (q) {
+        if (savedAnswers[q.id] !== undefined) {
+          applyAnswerVisual(q, savedAnswers[q.id]);
+          showResult(q, savedAnswers[q.id]);
+        }
+      });
+
+      updateFilterLabels();
+      updateStats();
+      updateSummary();
+      applyFilter();
+    }
+
+    function renderPart2() {
+      const container = document.getElementById("part2Container");
+      container.innerHTML = "";
+
+      part2Tasks.forEach(function (t) {
+        const card = document.createElement("article");
+        card.className = "manual-card";
+
+        card.innerHTML = `
+          <span class="tag red">${escapeHtml(loc("p2Tag"))}</span>
+          <h3>${escapeHtml(loc("p2Task"))} ${t.n}. ${escapeHtml(t.title)}</h3>
+          <p>${escapeHtml(t.text)}</p>
+          ${t.figure ? getFigureSvg(t.figure) : ''}
+          <div class="answer-hint">
+            <strong>${escapeHtml(loc("p2Hint"))}</strong>
+            ${escapeHtml(t.note)}
+          </div>
+          <div class="check-input">
+            <label>${escapeHtml(loc("p2InputLbl"))}</label>
+            <input
+              type="text"
+              data-task="${t.n}"
+              value="${escapeHtml(manualNotes[t.n] || "")}"
+              placeholder="${escapeHtml(loc("p2Placeholder"))}"
+            />
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function handleAnswer(qId, selectedIdx) {
+      const q = quiz.find(function (item) { return item.id === qId; });
+      if (!q || savedAnswers[qId] !== undefined) return;
+
+      const selectedValue = q.options[selectedIdx];
+      savedAnswers[qId] = selectedValue;
+
+      applyAnswerVisual(q, selectedValue);
+      showResult(q, selectedValue);
+      updateStats();
+      updateSummary();
+    }
+
+    function applyAnswerVisual(q, selectedValue) {
+      const optionsBox = document.getElementById("options-" + q.id);
+      if (!optionsBox) return;
+
+      const correctValue = q.options[q.correct];
+      const buttons = optionsBox.querySelectorAll(".option");
+
+      buttons.forEach(function (btn) {
+        btn.disabled = true;
+        const value = btn.dataset.value;
+
+        if (value === correctValue) {
+          btn.classList.add("correct");
+        }
+
+        if (value === selectedValue && selectedValue !== correctValue) {
+          btn.classList.add("wrong");
+        }
+      });
+    }
+
+    function showResult(q, selectedValue) {
+      const resultBox = document.getElementById("result-" + q.id);
+      if (!resultBox) return;
+
+      const correctValue = q.options[q.correct];
+      const isCorrect = selectedValue === correctValue;
+
+      const resultClass = isCorrect ? "correct" : "wrong";
+      const verdictClass = isCorrect ? "correct" : "wrong";
+      const verdictText = isCorrect ? loc("resCorrect") : loc("resWrong");
+
+      resultBox.innerHTML = `
+        <div class="result-block ${resultClass}" role="status" aria-live="polite">
+          <div class="verdict ${verdictClass}">${escapeHtml(verdictText)}</div>
+          <div class="result-row"><strong>${escapeHtml(loc("resAns"))}</strong> ${escapeHtml(correctValue)}</div>
+          <div class="result-row"><strong>${escapeHtml(loc("resExp"))}</strong> ${escapeHtml(q.explanation)}</div>
+          <div class="source-row"><strong>${escapeHtml(loc("resSrc"))}</strong> ${escapeHtml(q.source)}</div>
+        </div>
+      `;
+    }
+
+    function getChecklistProgress() {
+      const total = checklistItemsData.length;
+      let done = 0;
+      checklistItemsData.forEach(function (item) {
+        if (checklistState[item.key]) done++;
+      });
+      return total ? Math.round((done / total) * 100) : 0;
+    }
+
+    function updateStats() {
+      const total = quiz.length;
+      let answered = 0;
+      let correct = 0;
+
+      quiz.forEach(function (q) {
+        const saved = savedAnswers[q.id];
+        if (typeof saved === "string" && q.options.includes(saved)) {
+          answered++;
+          if (saved === q.options[q.correct]) {
+            correct++;
+          }
+        }
+      });
+
+      document.getElementById("answeredCount").textContent = answered + "/" + total;
+      document.getElementById("correctCount").textContent = correct;
+      document.getElementById("checklistProgress").textContent = getChecklistProgress() + "%";
+      document.getElementById("overall").value = Math.round(((answered / total) * 100 + getChecklistProgress()) / 2);
+    }
+
+    function updateSummary() {
+      const summaryBox = document.getElementById("summaryBox");
+      const total = quiz.length;
+      let answered = 0;
+      let correct = 0;
+
+      quiz.forEach(function (q) {
+        const saved = savedAnswers[q.id];
+        if (typeof saved === "string" && q.options.includes(saved)) {
+          answered++;
+          if (saved === q.options[q.correct]) {
+            correct++;
+          }
+        }
+      });
+
+      if (answered < total) {
+        summaryBox.innerHTML = `
+          <div class="summary">
+            <p style="color:#9aa4c8;margin:0;">${escapeHtml(loc("sumDone"))} <strong>${answered}</strong> ${escapeHtml(loc("sumOf"))} ${total}</p>
+            <p style="color:#9aa4c8;margin:8px 0 0 0;">${escapeHtml(loc("sumCorr"))} <strong>${correct}</strong></p>
+            <p style="color:#9aa4c8;margin:8px 0 0 0;font-size:14px;">${escapeHtml(loc("sumFin"))}</p>
+          </div>
+        `;
+        return;
+      }
+
+      const percent = Math.round((correct / total) * 100);
+      let verdict = "";
+
+      if (percent >= 85) {
+        verdict = loc("verExc");
+      } else if (percent >= 60) {
+        verdict = loc("verGood");
+      } else {
+        verdict = loc("verNeed");
+      }
+
+      summaryBox.innerHTML = `
+        <div class="summary">
+          <div class="score">${correct}/${total}</div>
+          <p style="margin:8px 0;">${escapeHtml(verdict)}</p>
+          <p style="color:#9aa4c8;margin:0;">${escapeHtml(loc("sumCorr"))} ${percent}%</p>
+        </div>
+      `;
+    }
+
+    function resetAll() {
+      if (!confirm(loc("confReset"))) return;
+
+      savedAnswers = {};
+      manualNotes = {};
+      checklistState = {};
+
+      shuffleOptionsOnce();
+      renderAllSections();
+    }
+
+    function renderAllSections() {
+      prepareData();
+      renderStaticSections();
+      renderChecklist();
+      renderPlan();
+      renderAllQuestions();
+      renderPart2();
+    }
+
+    function copyPhone() {
+      const phone = "89202275676";
+      const status = document.getElementById("copyStatus");
+
+      const showCopied = function () {
+        status.textContent = loc("copied");
+        setTimeout(function () {
+          status.textContent = "";
+        }, 2500);
+      };
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(phone)
+          .then(showCopied)
+          .catch(function () {
+            fallbackCopy(phone, showCopied);
+          });
+      } else {
+        fallbackCopy(phone, showCopied);
+      }
+    }
+
+    function fallbackCopy(text, callback) {
+      const textarea = document.createElement("textarea");
+      textarea.value = text;
+      textarea.style.position = "fixed";
+      textarea.style.opacity = "0";
+
+      document.body.appendChild(textarea);
+      textarea.focus();
+      textarea.select();
+
+      try {
+        document.execCommand("copy");
+        callback();
+      } catch (e) {
+        alert(loc("errCopy") + text);
+      }
+
+      document.body.removeChild(textarea);
+    }
+
+    // ============================================================
+    // TIMER LOGIC
+    // ============================================================
+    let timerTotal = 210 * 60; // Default Physics 210 mins
+    let timerRemaining = timerTotal;
+    let timerInterval = null;
+    let timerRunning = false;
+
+    function formatTime(sec) {
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = sec % 60;
+      return [h, m, s].map(function (v) { return String(v).padStart(2, "0"); }).join(":");
+    }
+
+    function updateTimerDisplay() {
+      const display = document.getElementById("timerDisplay");
+      const widget = document.getElementById("timerWidget");
+      display.textContent = formatTime(timerRemaining);
+      widget.classList.toggle("warning", timerRemaining <= 300 && timerRemaining > 60);
+      widget.classList.toggle("danger", timerRemaining <= 60);
+    }
+
+    function updateTimerButton() {
+      const btn = document.getElementById("timerToggle");
+      btn.textContent = timerRunning ? "⏸" : "▶";
+      btn.setAttribute("title", timerRunning ? loc("timerPause") : loc("timerStart"));
+      btn.setAttribute("aria-label", timerRunning ? loc("timerPause") : loc("timerStart"));
+    }
+
+    function stopTimer() {
+      timerRunning = false;
+      if (timerInterval) clearInterval(timerInterval);
+      timerInterval = null;
+      updateTimerButton();
+    }
+
+    function startTimer() {
+      if (timerRunning || timerRemaining <= 0) return;
+      timerRunning = true;
+      timerInterval = setInterval(function () {
+        if (timerRemaining > 0) {
+          timerRemaining--;
+          updateTimerDisplay();
+        }
+        if (timerRemaining === 0) {
+          stopTimer();
+          alert(loc("timerUp"));
+        }
+      }, 1000);
+      updateTimerButton();
+    }
+
+    function toggleTimer() {
+      if (timerRunning) stopTimer();
+      else startTimer();
+    }
+
+    function resetTimer() {
+      stopTimer();
+      timerRemaining = timerTotal;
+      updateTimerDisplay();
+    }
+
+    function updateTimerLabels() {
+      const preset = document.getElementById("timerPreset");
+      const presets = [
+        { seconds: 210 * 60, key: "timerPhys" },
+        { seconds: 60 * 60, key: "timerPractice" }
+      ];
+
+      preset.innerHTML = presets.map(function (p) {
+        return `<option value="${p.seconds}">${escapeHtml(loc(p.key))}</option>`;
+      }).join("");
+
+      const currentValue = parseInt(preset.value, 10);
+      if (!presets.some(p => p.seconds === currentValue)) {
+         preset.value = String(210 * 60);
+         timerTotal = 210 * 60;
+      } else {
+         timerTotal = currentValue;
+      }
+      
+      document.getElementById("timerReset").setAttribute("title", loc("timerReset"));
+      document.getElementById("timerReset").setAttribute("aria-label", loc("timerReset"));
+      updateTimerButton();
+      updateTimerDisplay();
+    }
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.querySelectorAll(".lang-option").forEach(function (sp) {
+        sp.classList.toggle("active", sp.dataset.lang === lang);
+      });
+      applyUIText();
+      renderAllSections();
+      updateTimerLabels();
+    }
+
+    // Helper to get SVG based on ID and Language context (if needed, though mostly generic)
+    function getFigureSvg(figId) {
+      // Simple mapping, assuming figures don't change drastically except maybe labels which are handled by CSS/SVG text elements if localized separately.
+      // For this implementation, we use the same SVG strings but could inject localized text nodes if complex.
+      // Here we just return the string defined in the original code structure, wrapped in the figure tag.
+      const svgs = {
+        fig1: `<figure class="q-figure"><svg viewBox="0 0 420 260" xmlns="http://www.w3.org/2000/svg"><rect width="420" height="260" fill="none"/><line x1="40" y1="20" x2="40" y2="230" stroke="#9aa4c8" stroke-width="1.5"/><line x1="40" y1="130" x2="400" y2="130" stroke="#9aa4c8" stroke-width="1.5"/><polygon points="400,130 392,126 392,134" fill="#9aa4c8"/><polygon points="40,20 36,28 44,28" fill="#9aa4c8"/><text x="405" y="135" fill="#9aa4c8" font-size="13" font-family="sans-serif">t, s</text><text x="18" y="20" fill="#9aa4c8" font-size="13" font-family="sans-serif">vx, m/s</text><g stroke="rgba(255,255,255,0.10)" stroke-width="0.7"><line x1="40" y1="50" x2="400" y2="50"/><line x1="40" y1="90" x2="400" y2="90"/><line x1="40" y1="170" x2="400" y2="170"/><line x1="40" y1="210" x2="400" y2="210"/><line x1="100" y1="20" x2="100" y2="230"/><line x1="160" y1="20" x2="160" y2="230"/><line x1="220" y1="20" x2="220" y2="230"/><line x1="280" y1="20" x2="280" y2="230"/><line x1="340" y1="20" x2="340" y2="230"/></g><text x="30" y="135" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">0</text><text x="30" y="54" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">12</text><text x="30" y="94" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">4</text><text x="30" y="174" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">−4</text><text x="30" y="214" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">−12</text><text x="100" y="245" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">2</text><text x="160" y="245" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">3</text><text x="220" y="245" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">4</text><text x="280" y="245" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">5</text><text x="340" y="245" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">6</text><polyline points="40,90 100,90 160,210 220,210 280,130 340,130" fill="none" stroke="#22d3ee" stroke-width="2.5"/><circle cx="40" cy="90" r="3" fill="#22d3ee"/><circle cx="100" cy="90" r="3" fill="#22d3ee"/><circle cx="160" cy="210" r="3" fill="#22d3ee"/><circle cx="220" cy="210" r="3" fill="#22d3ee"/><circle cx="280" cy="130" r="3" fill="#22d3ee"/><circle cx="340" cy="130" r="3" fill="#22d3ee"/><line x1="100" y1="90" x2="160" y2="210" stroke="#ef4444" stroke-width="3.5" stroke-dasharray="4,3"/></svg><figcaption>Graph vx(t). Red highlights segment from 2 to 3 s.</figcaption></figure>`,
+        fig2: `<figure class="q-figure"><svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg"><line x1="50" y1="30" x2="50" y2="200" stroke="#9aa4c8" stroke-width="1.5"/><line x1="50" y1="200" x2="330" y2="200" stroke="#9aa4c8" stroke-width="1.5"/><polygon points="330,200 322,196 322,204" fill="#9aa4c8"/><polygon points="50,30 46,38 54,38" fill="#9aa4c8"/><text x="335" y="205" fill="#9aa4c8" font-size="13" font-family="sans-serif">x, cm</text><text x="20" y="35" fill="#9aa4c8" font-size="13" font-family="sans-serif">F, N</text><g stroke="rgba(255,255,255,0.10)" stroke-width="0.7"><line x1="50" y1="160" x2="330" y2="160"/><line x1="50" y1="120" x2="330" y2="120"/><line x1="50" y1="80" x2="330" y2="80"/><line x1="50" y1="40" x2="330" y2="40"/><line x1="90" y1="30" x2="90" y2="200"/><line x1="130" y1="30" x2="130" y2="200"/><line x1="170" y1="30" x2="170" y2="200"/><line x1="210" y1="30" x2="210" y2="200"/><line x1="250" y1="30" x2="250" y2="200"/><line x1="290" y1="30" x2="290" y2="200"/></g><text x="42" y="204" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">0</text><text x="42" y="164" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">5</text><text x="42" y="124" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">10</text><text x="42" y="84" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">15</text><text x="90" y="216" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">2</text><text x="130" y="216" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">4</text><text x="170" y="216" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">6</text><text x="210" y="216" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">8</text><text x="250" y="216" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">10</text><text x="290" y="216" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">12</text><line x1="50" y1="200" x2="170" y2="80" stroke="#22d3ee" stroke-width="2.5"/><circle cx="170" cy="80" r="3.5" fill="#22d3ee"/><line x1="170" y1="80" x2="170" y2="200" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/><line x1="50" y1="80" x2="170" y2="80" stroke="#ef4444" stroke-width="1" stroke-dasharray="3,3"/><text x="180" y="76" fill="#ef4444" font-size="12" font-family="sans-serif">(6 cm; 15 N)</text></svg><figcaption>Graph of dependence F(x) for spring.</figcaption></figure>`,
+        fig6: `<figure class="q-figure"><svg viewBox="0 0 520 320" xmlns="http://www.w3.org/2000/svg"><text x="20" y="20" fill="#e8ecff" font-size="15" font-weight="bold" font-family="sans-serif">A)</text><line x1="60" y1="130" x2="240" y2="130" stroke="#9aa4c8" stroke-width="1.2"/><line x1="60" y1="20" x2="60" y2="130" stroke="#9aa4c8" stroke-width="1.2"/><polygon points="240,130 232,126 232,134" fill="#9aa4c8"/><polygon points="60,20 56,28 64,28" fill="#9aa4c8"/><text x="245" y="135" fill="#9aa4c8" font-size="12" font-family="sans-serif">t</text><text x="30" y="25" fill="#9aa4c8" font-size="12" font-family="sans-serif">0</text><path d="M60,130 C85,80 105,80 130,130 C155,180 175,180 200,130 C215,100 228,100 240,115" fill="none" stroke="#22d3ee" stroke-width="2.5"/><text x="225" y="150" fill="#9aa4c8" font-size="12" font-family="sans-serif">T</text><line x1="235" y1="130" x2="235" y2="125" stroke="#9aa4c8" stroke-width="1"/><line x1="235" y1="130" x2="235" y2="135" stroke="#9aa4c8" stroke-width="1"/><text x="20" y="195" fill="#e8ecff" font-size="15" font-weight="bold" font-family="sans-serif">B)</text><line x1="60" y1="300" x2="240" y2="300" stroke="#9aa4c8" stroke-width="1.2"/><line x1="60" y1="185" x2="60" y2="300" stroke="#9aa4c8" stroke-width="1.2"/><polygon points="240,300 232,296 232,304" fill="#9aa4c8"/><polygon points="60,185 56,193 64,193" fill="#9aa4c8"/><text x="245" y="305" fill="#9aa4c8" font-size="12" font-family="sans-serif">t</text><text x="30" y="190" fill="#9aa4c8" font-size="12" font-family="sans-serif">0</text><path d="M60,200 C80,270 100,270 120,200 C140,130 160,130 180,200 C195,250 210,250 225,220" fill="none" stroke="#22d3ee" stroke-width="2.5"/><line x1="225" y1="220" x2="225" y2="300" stroke="#9aa4c8" stroke-width="1" stroke-dasharray="3,3"/><text x="218" y="315" fill="#9aa4c8" font-size="12" font-family="sans-serif">T</text></svg><figcaption>Graphs A and B of harmonic oscillations of load.</figcaption></figure>`,
+        fig9: `<figure class="q-figure"><svg viewBox="0 0 460 300" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="260" x2="430" y2="260" stroke="#9aa4c8" stroke-width="1.5"/><line x1="60" y1="30" x2="60" y2="260" stroke="#9aa4c8" stroke-width="1.5"/><polygon points="430,260 422,256 422,264" fill="#9aa4c8"/><polygon points="60,30 56,38 64,38" fill="#9aa4c8"/><text x="435" y="265" fill="#9aa4c8" font-size="13" font-family="sans-serif">Q, J</text><text x="20" y="35" fill="#9aa4c8" font-size="13" font-family="sans-serif">t, °C</text><g stroke="rgba(255,255,255,0.08)" stroke-width="0.6"><line x1="60" y1="80" x2="430" y2="80"/><line x1="60" y1="130" x2="430" y2="130"/><line x1="60" y1="180" x2="430" y2="180"/><line x1="60" y1="230" x2="430" y2="230"/></g><text x="52" y="264" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">0</text><text x="155" y="280" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">240</text><text x="205" y="280" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">327</text><text x="330" y="280" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">696</text><text x="52" y="185" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">961</text><text x="52" y="84" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">2170</text><polyline points="60,260 140,185 200,185 320,84 430,84" fill="none" stroke="#22d3ee" stroke-width="2.5"/><circle cx="140" cy="185" r="4" fill="#ef4444"/><circle cx="200" cy="185" r="4" fill="#ef4444"/><circle cx="320" cy="84" r="4" fill="#ef4444"/><text x="140" y="176" fill="#ef4444" font-size="14" font-weight="bold" font-family="sans-serif">1</text><text x="200" y="176" fill="#ef4444" font-size="14" font-weight="bold" font-family="sans-serif">2</text><text x="320" y="75" fill="#ef4444" font-size="14" font-weight="bold" font-family="sans-serif">3</text><line x1="140" y1="185" x2="140" y2="260" stroke="#9aa4c8" stroke-width="0.8" stroke-dasharray="3,3"/><line x1="200" y1="185" x2="200" y2="260" stroke="#9aa4c8" stroke-width="0.8" stroke-dasharray="3,3"/><line x1="320" y1="84" x2="320" y2="260" stroke="#9aa4c8" stroke-width="0.8" stroke-dasharray="3,3"/><line x1="60" y1="185" x2="200" y2="185" stroke="#9aa4c8" stroke-width="0.8" stroke-dasharray="3,3"/><line x1="60" y1="84" x2="320" y2="84" stroke="#9aa4c8" stroke-width="0.8" stroke-dasharray="3,3"/><text x="100" y="230" fill="#9aa4c8" font-size="11" font-family="sans-serif">solid</text><text x="160" y="215" fill="#9aa4c8" font-size="11" font-family="sans-serif">melting</text><text x="260" y="160" fill="#9aa4c8" font-size="11" font-family="sans-serif">liquid</text></svg><figcaption>Graph of dependence of sample temperature on absorbed heat.</figcaption></figure>`,
+        fig10: `<figure class="q-figure"><svg viewBox="0 0 380 260" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="220" x2="340" y2="220" stroke="#9aa4c8" stroke-width="1.5"/><line x1="60" y1="30" x2="60" y2="220" stroke="#9aa4c8" stroke-width="1.5"/><polygon points="340,220 332,216 332,224" fill="#9aa4c8"/><polygon points="60,30 56,38 64,38" fill="#9aa4c8"/><text x="345" y="225" fill="#9aa4c8" font-size="13" font-family="sans-serif">T</text><text x="30" y="35" fill="#9aa4c8" font-size="13" font-family="sans-serif">V</text><g stroke="rgba(255,255,255,0.08)" stroke-width="0.6"><line x1="60" y1="80" x2="340" y2="80"/><line x1="60" y1="130" x2="340" y2="130"/><line x1="60" y1="180" x2="340" y2="180"/><line x1="120" y1="30" x2="120" y2="220"/><line x1="180" y1="30" x2="180" y2="220"/><line x1="240" y1="30" x2="240" y2="220"/><line x1="300" y1="30" x2="300" y2="220"/></g><text x="52" y="224" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">0</text><text x="52" y="134" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">V₀</text><text x="120" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">T₀</text><text x="240" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">2T₀</text><polyline points="120,130 120,180 240,180" fill="none" stroke="#22d3ee" stroke-width="2.5"/><circle cx="120" cy="130" r="4" fill="#22d3ee"/><circle cx="120" cy="180" r="4" fill="#22d3ee"/><circle cx="240" cy="180" r="4" fill="#22d3ee"/><text x="105" y="125" fill="#22d3ee" font-size="13" font-weight="bold" font-family="sans-serif">1</text><text x="105" y="195" fill="#22d3ee" font-size="13" font-weight="bold" font-family="sans-serif">2</text><text x="248" y="195" fill="#22d3ee" font-size="13" font-weight="bold" font-family="sans-serif">3</text><polygon points="120,155 116,162 124,162" fill="#22d3ee"/><polygon points="180,180 173,176 173,184" fill="#22d3ee"/></svg><figcaption>Process 1–2–3 graph in V—T coordinates.</figcaption></figure>`,
+        fig12: `<figure class="q-figure"><svg viewBox="0 0 460 260" xmlns="http://www.w3.org/2000/svg"><line x1="50" y1="220" x2="430" y2="220" stroke="#9aa4c8" stroke-width="1.5"/><line x1="50" y1="30" x2="50" y2="220" stroke="#9aa4c8" stroke-width="1.5"/><polygon points="430,220 422,216 422,224" fill="#9aa4c8"/><polygon points="50,30 46,38 54,38" fill="#9aa4c8"/><text x="435" y="225" fill="#9aa4c8" font-size="13" font-family="sans-serif">t, s</text><text x="20" y="35" fill="#9aa4c8" font-size="13" font-family="sans-serif">I, A</text><g stroke="rgba(255,255,255,0.08)" stroke-width="0.6"><line x1="50" y1="180" x2="430" y2="180"/><line x1="50" y1="140" x2="430" y2="140"/><line x1="50" y1="100" x2="430" y2="100"/><line x1="50" y1="60" x2="430" y2="60"/><line x1="100" y1="30" x2="100" y2="220"/><line x1="150" y1="30" x2="150" y2="220"/><line x1="200" y1="30" x2="200" y2="220"/><line x1="250" y1="30" x2="250" y2="220"/><line x1="300" y1="30" x2="300" y2="220"/><line x1="350" y1="30" x2="350" y2="220"/><line x1="400" y1="30" x2="400" y2="220"/></g><text x="42" y="224" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">0</text><text x="42" y="104" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">3</text><text x="42" y="144" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">1</text><text x="42" y="244" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">−2</text><text x="100" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">1</text><text x="150" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">2</text><text x="200" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">3</text><text x="250" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">4</text><text x="300" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">5</text><text x="350" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">6</text><text x="400" y="238" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">7</text><polyline points="30,260 100,100 200,140 300,140 400,180 430,200" fill="none" stroke="#22d3ee" stroke-width="2.5"/><circle cx="100" cy="100" r="4" fill="#22d3ee"/><circle cx="200" cy="140" r="4" fill="#22d3ee"/><line x1="100" y1="100" x2="200" y2="140" stroke="#ef4444" stroke-width="3.5" stroke-dasharray="4,3"/></svg><figcaption>Graph of dependence of current I(t) in coil.</figcaption></figure>`,
+        fig13: `<figure class="q-figure"><svg viewBox="0 0 560 260" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="130" x2="540" y2="130" stroke="#9aa4c8" stroke-width="1"/><line x1="280" y1="40" x2="280" y2="220" stroke="#22d3ee" stroke-width="3"/><polygon points="280,40 275,55 285,55" fill="#22d3ee"/><polygon points="280,220 275,205 285,205" fill="#22d3ee"/><circle cx="200" cy="130" r="3" fill="#9aa4c8"/><circle cx="360" cy="130" r="3" fill="#9aa4c8"/><circle cx="120" cy="130" r="3" fill="#9aa4c8"/><circle cx="440" cy="130" r="3" fill="#9aa4c8"/><text x="200" y="150" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">F</text><text x="120" y="150" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">2F</text><text x="360" y="150" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">F</text><text x="440" y="150" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">2F</text><line x1="480" y1="130" x2="480" y2="60" stroke="#e8ecff" stroke-width="2.5"/><text x="486" y="58" fill="#e8ecff" font-size="13" font-family="sans-serif">B</text><text x="486" y="145" fill="#e8ecff" font-size="13" font-family="sans-serif">A</text><line x1="480" y1="60" x2="280" y2="60" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/><line x1="280" y1="60" x2="160" y2="200" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5,3"/><line x1="480" y1="60" x2="280" y2="130" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,3"/><line x1="280" y1="130" x2="160" y2="200" stroke="#22c55e" stroke-width="1.5" stroke-dasharray="5,3"/><line x1="220" y1="130" x2="220" y2="165" stroke="#f59e0b" stroke-width="3"/><polygon points="220,165 216,155 224,155" fill="#f59e0b"/><text x="228" y="178" fill="#f59e0b" font-size="14" font-weight="bold" font-family="sans-serif">3</text><line x1="160" y1="130" x2="160" y2="200" stroke="#9aa4c8" stroke-width="2"/><text x="148" y="215" fill="#9aa4c8" font-size="14" font-weight="bold" font-family="sans-serif">1</text><line x1="160" y1="130" x2="160" y2="55" stroke="#9aa4c8" stroke-width="2"/><text x="148" y="50" fill="#9aa4c8" font-size="14" font-weight="bold" font-family="sans-serif">2</text><line x1="220" y1="130" x2="220" y2="200" stroke="#9aa4c8" stroke-width="2"/><text x="228" y="215" fill="#9aa4c8" font-size="14" font-weight="bold" font-family="sans-serif">4</text></svg><figcaption>Construction of image of object AB in thin converging lens.</figcaption></figure>`,
+        fig17: `<figure class="q-figure"><svg viewBox="0 0 360 280" xmlns="http://www.w3.org/2000/svg"><line x1="40" y1="240" x2="320" y2="240" stroke="#22d3ee" stroke-width="2.5"/><line x1="40" y1="190" x2="320" y2="190" stroke="#22d3ee" stroke-width="2.5"/><line x1="40" y1="130" x2="320" y2="130" stroke="#22d3ee" stroke-width="2.5"/><line x1="40" y1="60" x2="320" y2="60" stroke="#22d3ee" stroke-width="2.5"/><text x="330" y="245" fill="#9aa4c8" font-size="13" font-family="sans-serif">E₀</text><text x="330" y="195" fill="#9aa4c8" font-size="13" font-family="sans-serif">E₁</text><text x="330" y="135" fill="#9aa4c8" font-size="13" font-family="sans-serif">E₂</text><text x="330" y="65" fill="#9aa4c8" font-size="13" font-family="sans-serif">E₃</text><line x1="100" y1="190" x2="100" y2="240" stroke="#ef4444" stroke-width="2"/><polygon points="100,240 96,230 104,230" fill="#ef4444"/><text x="110" y="220" fill="#ef4444" font-size="11" font-family="sans-serif">E₁−E₀</text><line x1="180" y1="130" x2="180" y2="190" stroke="#22c55e" stroke-width="2"/><polygon points="180,190 176,180 184,180" fill="#22c55e"/><text x="190" y="165" fill="#22c55e" font-size="11" font-family="sans-serif">E₂−E₁</text><line x1="260" y1="60" x2="260" y2="240" stroke="#22c55e" stroke-width="2"/><polygon points="260,240 256,230 264,230" fill="#22c55e"/><text x="270" y="155" fill="#22c55e" font-size="11" font-family="sans-serif">E₃−E₀</text></svg><figcaption>Simplified diagram of lower energy levels of atom.</figcaption></figure>`,
+        fig19: `<figure class="q-figure"><svg viewBox="0 0 320 220" xmlns="http://www.w3.org/2000/svg"><rect x="30" y="20" width="260" height="160" rx="12" fill="rgba(255,255,255,0.05)" stroke="#9aa4c8" stroke-width="1.5"/><path d="M70,150 A90,90 0 0,1 250,150" fill="none" stroke="#9aa4c8" stroke-width="1.5"/><g stroke="#9aa4c8" stroke-width="1.5"><line x1="70" y1="150" x2="70" y2="140"/><line x1="85" y1="118" x2="79" y2="110"/><line x1="115" y1="92" x2="111" y2="83"/><line x1="160" y1="75" x2="160" y2="65"/><line x1="205" y1="92" x2="209" y2="83"/><line x1="235" y1="118" x2="241" y2="110"/><line x1="250" y1="150" x2="250" y2="140"/></g><text x="65" y="168" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">0</text><text x="95" y="92" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">0.2</text><text x="160" y="58" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">0.4</text><text x="225" y="92" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">0.6</text><text x="255" y="168" fill="#9aa4c8" font-size="12" text-anchor="middle" font-family="sans-serif">0.8</text><line x1="160" y1="150" x2="185" y2="80" stroke="#ef4444" stroke-width="2.5"/><circle cx="160" cy="150" r="4" fill="#ef4444"/><text x="160" y="180" fill="#9aa4c8" font-size="13" text-anchor="middle" font-family="sans-serif">A</text><circle cx="270" cy="170" r="35" fill="rgba(255,255,255,0.03)" stroke="#22d3ee" stroke-width="1.5"/><line x1="255" y1="170" x2="275" y2="140" stroke="#ef4444" stroke-width="2"/><text x="248" y="175" fill="#9aa4c8" font-size="10" font-family="sans-serif">0</text><text x="278" y="140" fill="#9aa4c8" font-size="10" font-family="sans-serif">1</text></svg><figcaption>Ammeter. Needle at 1.4 A, scale division price 0.2 A.</figcaption></figure>`,
+        fig21: `<figure class="q-figure"><svg viewBox="0 0 420 280" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="240" x2="390" y2="240" stroke="#9aa4c8" stroke-width="1.5"/><line x1="60" y1="30" x2="60" y2="240" stroke="#9aa4c8" stroke-width="1.5"/><polygon points="390,240 382,236 382,244" fill="#9aa4c8"/><polygon points="60,30 56,38 64,38" fill="#9aa4c8"/><text x="395" y="245" fill="#9aa4c8" font-size="13" font-family="sans-serif">T</text><text x="30" y="35" fill="#9aa4c8" font-size="13" font-family="sans-serif">V</text><g stroke="rgba(255,255,255,0.08)" stroke-width="0.6"><line x1="60" y1="90" x2="390" y2="90"/><line x1="60" y1="150" x2="390" y2="150"/><line x1="60" y1="195" x2="390" y2="195"/></g><text x="52" y="244" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">0</text><text x="52" y="199" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">V₀</text><text x="52" y="154" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">2V₀</text><text x="52" y="94" fill="#9aa4c8" font-size="11" text-anchor="end" font-family="sans-serif">3V₀</text><text x="130" y="258" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">T₀</text><text x="220" y="258" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">2T₀</text><text x="310" y="258" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">3T₀</text><text x="370" y="258" fill="#9aa4c8" font-size="11" text-anchor="middle" font-family="sans-serif">4T₀</text><polyline points="130,195 130,150 310,90 130,195" fill="none" stroke="#22d3ee" stroke-width="2.5"/><circle cx="130" cy="195" r="4" fill="#22d3ee"/><circle cx="130" cy="150" r="4" fill="#22d3ee"/><circle cx="310" cy="90" r="4" fill="#22d3ee"/><text x="115" y="200" fill="#22d3ee" font-size="14" font-weight="bold" font-family="sans-serif">1</text><text x="115" y="148" fill="#22d3ee" font-size="14" font-weight="bold" font-family="sans-serif">2</text><text x="318" y="86" fill="#22d3ee" font-size="14" font-weight="bold" font-family="sans-serif">3</text><polygon points="130,172 126,180 134,180" fill="#22d3ee"/><polygon points="220,120 213,116 213,124" fill="#22d3ee"/><polygon points="220,150 213,146 213,154" fill="#22d3ee"/></svg><figcaption>Cyclic process 1–2–3–1 in V—T coordinates (task 21).</figcaption></figure>`,
+        fig26: `<figure class="q-figure"><svg viewBox="0 0 460 320" xmlns="http://www.w3.org/2000/svg"><line x1="20" y1="200" x2="280" y2="200" stroke="#9aa4c8" stroke-width="2"/><line x1="20" y1="200" x2="20" y2="210" stroke="#9aa4c8" stroke-width="2"/><line x1="280" y1="200" x2="280" y2="210" stroke="#9aa4c8" stroke-width="2"/><rect x="40" y="170" width="80" height="30" rx="4" fill="rgba(255,255,255,0.08)" stroke="#22d3ee" stroke-width="2"/><text x="80" y="190" fill="#e8ecff" font-size="14" text-anchor="middle" font-family="sans-serif">M</text><line x1="40" y1="185" x2="15" y2="185" stroke="#ef4444" stroke-width="2"/><polygon points="15,185 25,181 25,189" fill="#ef4444"/><text x="10" y="175" fill="#ef4444" font-size="11" font-family="sans-serif">F_tr</text><circle cx="310" cy="170" r="18" fill="none" stroke="#9aa4c8" stroke-width="2.5"/><circle cx="310" cy="170" r="3" fill="#9aa4c8"/><line x1="120" y1="185" x2="292" y2="170" stroke="#e8ecff" stroke-width="1.8"/><line x1="328" y1="170" x2="328" y2="240" stroke="#e8ecff" stroke-width="1.8"/><rect x="308" y="240" width="40" height="30" rx="4" fill="rgba(255,255,255,0.08)" stroke="#f59e0b" stroke-width="2"/><text x="328" y="260" fill="#e8ecff" font-size="14" text-anchor="middle" font-family="sans-serif">m</text><path d="M328,270 L328,278 L320,282 L336,286 L320,290 L336,294 L320,298 L328,302 L328,310" fill="none" stroke="#22c55e" stroke-width="2"/><rect x="308" y="310" width="40" height="5" rx="2" fill="none"/><rect x="308" y="308" width="40" height="25" rx="4" fill="rgba(255,255,255,0.08)" stroke="#f59e0b" stroke-width="2"/><text x="328" y="325" fill="#e8ecff" font-size="14" text-anchor="middle" font-family="sans-serif">m</text><text x="200" y="230" fill="#9aa4c8" font-size="12" font-family="sans-serif">thread</text><text x="340" y="285" fill="#22c55e" font-size="12" font-family="sans-serif">spring</text><text x="355" y="195" fill="#9aa4c8" font-size="12" font-family="sans-serif">pulley</text></svg><figcaption>Setup scheme: bar M on table, loads m on thread and spring (task 26).</figcaption></figure>`
+      };
+      return svgs[figId] || '';
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+      localStorage.removeItem(STORAGE.answers);
+      localStorage.removeItem(STORAGE.checklist);
+      localStorage.removeItem(STORAGE.shuffle);
+      localStorage.removeItem(STORAGE.manual);
+
+      savedAnswers = {};
+      manualNotes = {};
+      checklistState = {};
+
+      shuffleOptionsOnce();
+      applyUIText();
+      renderAllSections();
+      updateTimerLabels();
+      updateTimerDisplay();
+
+      document.getElementById("langToggle").addEventListener("click", function () {
+        setLang(currentLang === "en" ? "ru" : "en");
+      });
+
+      document.getElementById("timerToggle").addEventListener("click", toggleTimer);
+      document.getElementById("timerReset").addEventListener("click", resetTimer);
+
+      document.getElementById("timerPreset").addEventListener("change", function (e) {
+        timerTotal = parseInt(e.target.value, 10);
+        resetTimer();
+      });
+
+      document.getElementById("checklistUl").addEventListener("change", function (e) {
+        if (e.target.matches("input[type='checkbox']")) {
+          const key = e.target.dataset.key;
+          checklistState[key] = e.target.checked;
+          const li = e.target.closest(".check-item");
+          if (li) li.classList.toggle("done", e.target.checked);
+          updateStats();
+        }
+      });
+
+      document.getElementById("part2Container").addEventListener("input", function (e) {
+        if (e.target.matches("input[data-task]")) {
+          manualNotes[e.target.dataset.task] = e.target.value;
+        }
+      });
+    });
+  </script>
+</body>
+</html>
